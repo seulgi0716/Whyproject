@@ -10,5 +10,6 @@ public class Punch extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_punch);
+        setTitle("풀자! 스트레스!");
     }
 }

@@ -10,5 +10,6 @@ public class Trashcan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trashcan);
+        setTitle("괜찮아 다 말해봐!");
     }
 }

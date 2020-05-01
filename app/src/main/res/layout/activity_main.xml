@@ -86,7 +86,6 @@
             android:background="#8AAAE7"
             android:layout_marginTop="20dp"
             ></Button>
-
     </LinearLayout>
 
 
