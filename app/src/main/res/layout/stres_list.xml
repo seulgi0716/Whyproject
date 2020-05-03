@@ -2,19 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/stlist"
-    android:gravity="center">
+    android:background="@drawable/stlist">
 
     <TextView
         android:id="@+id/list_content"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="55dp"
         android:textSize = "20dp"
-        android:text="ddd"
         android:textColor = "#000000"
-        android:layout_marginRight="80dp"
+        android:layout_marginRight="130dp"
         android:fontFamily="@font/upfont"
         android:textStyle="bold"/>
 
@@ -23,7 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:text="ddd"
         android:textSize = "20dp"
         android:textColor = "#000000"
         android:gravity="right"

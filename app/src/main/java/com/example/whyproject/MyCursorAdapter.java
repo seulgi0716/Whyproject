@@ -16,20 +16,21 @@ public class MyCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        final TextView s_content = (TextView) view.findViewById(R.id.tname);
-        String bn = cursor.getString(cursor.getColumnIndex("borrowname"));
-        int bm = cursor.getInt(cursor.getColumnIndex("borrowmoney"));
-        String convertbm = Integer.toString(bm);
-        Log.d("스트링 확인", bn + ", " + bm);
-        System.out.println("convertbm : " + convertbm);
-        tvbname.setText(bn);
-        tvbmoney.setText(convertbm);
+        final TextView s_content = (TextView) view.findViewById(R.id.list_content);
+        final TextView s_value = (TextView) view.findViewById(R.id.list_value);
+        String sc = cursor.getString(cursor.getColumnIndex("S_CONTENT"));
+        int sv = cursor.getInt(cursor.getColumnIndex("S_VALUE"));
+        String convertsv = Integer.toString(sv);
+        Log.d("스트링 확인", sc + ", " + convertsv);
+       // System.out.println("convertbm : " + convertbm);
+        s_content.setText(sc);
+        s_value.setText(convertsv);
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.listitem, parent, false);
+        View v = inflater.inflate(R.layout.stres_list, parent, false);
         return v;
     }
 

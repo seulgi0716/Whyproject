@@ -60,7 +60,7 @@ public class WhoteaseActivity extends AppCompatActivity {
 
         cursor = db.rawQuery(querySelectAll, null);
         myAdapter = new MyCursorAdapter(this, cursor);
-        stress_list.setAdapter(myAdapter);
+        //stress_list.setAdapter(myAdapter);  ㅣㄹ스트 보여주는 부분
 
         calendar.addDecorators(
                 new SundayDecorator(),
@@ -189,9 +189,9 @@ public class WhoteaseActivity extends AppCompatActivity {
                             String a = show_sv.getText().toString();
                             int db_stress = Integer.parseInt(a);
 
-                            String ins_q1 = String.format("INSERT INTO STRESSTB VAULES (null, '%s', '%s', '%d');", s_date, stress_con, db_stress);
+                            String ins_q1 = String.format("INSERT INTO STRESSTB VALUES (null, '%s', '%s', '%d');", s_date, stress_con, db_stress);
                             db.execSQL(ins_q1);
-                            Toast.makeText(getApplicationContext(), "스트레스 내용 : " + stress_con + ", 스트레스 수치 : " + db_stress, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "날짜 : " + s_date + ", 스트레스 내용 : " + stress_con + ", 스트레스 수치 : " + db_stress, Toast.LENGTH_SHORT).show();
 
                         } catch (Exception e) {}
                     }
