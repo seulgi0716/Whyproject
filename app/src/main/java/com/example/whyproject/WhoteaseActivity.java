@@ -95,9 +95,11 @@ public class WhoteaseActivity extends AppCompatActivity {
                 cursor.moveToFirst();
                 try {
                     String cd = cursor.getString(0);
+                    stress_list.setVisibility(View.VISIBLE);
                     stress_list.setAdapter(myAdapter);
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(),"아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
+                    stress_list.setVisibility(View.INVISIBLE);
                 }
 
 
