@@ -45,6 +45,7 @@ public class WhoteaseActivity extends AppCompatActivity {
     final static String querySelectAll = String.format("SELECT * FROM STRESSTB");
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,7 @@ public class WhoteaseActivity extends AppCompatActivity {
 
         cursor = db.rawQuery(querySelectAll, null);
         myAdapter = new MyCursorAdapter(this, cursor);
-        //stress_list.setAdapter(myAdapter);  ㅣㄹ스트 보여주는 부분
+        //stress_list.setAdapter(myAdapter);
 
         calendar.addDecorators(
                 new SundayDecorator(),
@@ -87,7 +88,18 @@ public class WhoteaseActivity extends AppCompatActivity {
                 month = Integer.parseInt(parsedDATA[1])+1;
                 day = Integer.parseInt(parsedDATA[2]);
                 String check_date = year+"-"+month+"-"+day;
-                Toast.makeText(getApplicationContext(), year+"-"+month+"-"+day, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), year+"-"+month+"-"+day, Toast.LENGTH_SHORT).show();
+                //myAdapter = new MyCursorAdapter(this, cursor);
+                String qq = String.format("SELECT S_CONTENT, S_VALUE FROM STRESSTB WHERE S_DATE = '%s';", check_date);
+                cursor = db.rawQuery(qq, null);
+                cursor.moveToFirst();
+                try {
+                    String cd = cursor.getString(0);
+                    stress_list.setAdapter(myAdapter);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(),"아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
+                }
+
 
                 // db에서 cursor 써서 날짜값 search
 
@@ -192,6 +204,9 @@ public class WhoteaseActivity extends AppCompatActivity {
                             String ins_q1 = String.format("INSERT INTO STRESSTB VALUES (null, '%s', '%s', '%d');", s_date, stress_con, db_stress);
                             db.execSQL(ins_q1);
                             Toast.makeText(getApplicationContext(), "날짜 : " + s_date + ", 스트레스 내용 : " + stress_con + ", 스트레스 수치 : " + db_stress, Toast.LENGTH_SHORT).show();
+                            cursor = db.rawQuery(querySelectAll, null);
+                            myAdapter.changeCursor(cursor);
+
 
                         } catch (Exception e) {}
                     }
@@ -202,5 +217,25 @@ public class WhoteaseActivity extends AppCompatActivity {
                 }).create().show();
             }
         });
+
     }
+//    public String Searchdate(String check_date) {
+//        String sda = "";
+//        try {
+//            String queryFinddate = String.format("SELECT S_CONTENT FROM STRESSTB WHERE S_DATE = '%s';", check_date);
+//            cursor = db.rawQuery(queryFineSname, null);
+//            cursor.moveToFirst();
+//            samename = cursor.getString(0);
+//
+//            if (samename != null) {
+//                System.out.println("sanename is exist : " + samename);
+//            } else {
+//                System.out.println("samename is not exist");
+//            }
+//        } catch (Exception e) {
+//        }
+//        return sda;
+//    }
 }
+
+
