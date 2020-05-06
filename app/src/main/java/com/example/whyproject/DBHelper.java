@@ -10,7 +10,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //private static final String CreateTB = "CREATE TABLE IF NOT EXISTS " + AddFriends.TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + AddFriends.KEY_NAME + " TEXT, " + AddFriends.KEY_PHONE + " TEXT);";
-    private static final String CreateTB1 = "CREATE TABLE IF NOT EXISTS PWDTB (_id INTEGER PRIMARY KEY AUTOINCREMENT, SET_VALUE INTEGER, PASSWORD INTEGER);";
+    private static final String CreateTB1 = "CREATE TABLE IF NOT EXISTS PWDTB (_id INTEGER PRIMARY KEY AUTOINCREMENT, SET_VALUE INTEGER DEFAULT 0, PASSWORD INTEGER);";
     private static final String CreateTB2 = "CREATE TABLE IF NOT EXISTS STRESSTB (_id INTEGER PRIMARY KEY AUTOINCREMENT, S_DATE DATE, S_CONTENT TEXT, S_VALUE INTEGER);";
  //   private static final String CreateTB3 = "CREATE TABLE IF NOT EXISTS BORROWED (_id INTEGER PRIMARY KEY AUTOINCREMENT, borrowname TEXT, borrowmoney INTEGER);";
  //   private static final String CreateTB4 = "CREATE TABLE IF NOT EXISTS DUTCHPAY (_id INTEGER PRIMARY KEY AUTOINCREMENT, kinds TEXT, content TEXT, price TEXT);";

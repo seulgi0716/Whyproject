@@ -55,9 +55,9 @@ public class WhoteaseActivity extends AppCompatActivity {
         mHelper = new DBHelper(this);
         db = mHelper.getWritableDatabase();
 
-        add = (Button) findViewById(R.id.add_btn);
-        calendar = (MaterialCalendarView)findViewById(R.id.calendarView);
-        stress_list = (ListView)findViewById(R.id.stress_list);
+        add = findViewById(R.id.add_btn);
+        calendar = findViewById(R.id.calendarView);
+        stress_list = findViewById(R.id.stress_list);
 
         cursor = db.rawQuery(querySelectAll, null);
         myAdapter = new MyCursorAdapter(this, cursor);

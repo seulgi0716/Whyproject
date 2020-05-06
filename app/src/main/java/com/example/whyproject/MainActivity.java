@@ -24,12 +24,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView today_emo;
 
     /* DB 부분 */
-    static DBHelper dhelper;
-    static SQLiteDatabase db;
+
 
     String today;
-
-
 
 
     @Override
@@ -37,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("나한테 왜그래?!");
+
 
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < button.length; i++) {
             int index = i;
-            button[i] = (Button) findViewById(btnid[i]);
+            button[i] = findViewById(btnid[i]);
         }
 
         button[0].setOnClickListener(new View.OnClickListener() {

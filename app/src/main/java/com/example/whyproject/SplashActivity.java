@@ -2,14 +2,27 @@ package com.example.whyproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 public class SplashActivity extends Activity {
+
+    static DBHelper dhelper;
+    static SQLiteDatabase db;
+    //static MyCursorAdapter myCursorAdapter;
+
+    final static String querySelectAll = "SELECT * FROM PWDTB";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // 디비 접근 및 검색 코드 작성
+        dhelper = new DBHelper(this);
+        db = dhelper.getWritableDatabase();
+        final String qq = "SELECT S_VALUE FROM PWDTB";
+        db.rawQuery(qq, null);
+
 
         try {
             Thread.sleep(3000);
