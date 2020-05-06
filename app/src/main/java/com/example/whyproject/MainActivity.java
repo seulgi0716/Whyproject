@@ -3,6 +3,7 @@ package com.example.whyproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,7 +25,12 @@ public class MainActivity extends AppCompatActivity {
     ImageView today_emo;
 
     /* DB 부분 */
+    static DBHelper dhelper;
+    static SQLiteDatabase db;
+    static Cursor cursor;
+    static MyCursorAdapter2 myCursorAdapter;
 
+    final static String querySelectAll = "SELECT * FROM PWDTB";
 
     String today;
 
@@ -34,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("나한테 왜그래?!");
+
+        // 디비 접근 및 검색 코드 작성
+        dhelper = new DBHelper(this);
+        db = dhelper.getWritableDatabase();
+
+        cursor = db.rawQuery(querySelectAll, null);
+        myCursorAdapter = new MyCursorAdapter2(this, cursor);
 
 
         Date date = Calendar.getInstance().getTime();
@@ -97,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
                 // 다이얼로그 띄워서 or 액티비티 하나 띄워서
                 // DB에 비밀번호를 업데이트 할 코드 (NULL -> 비밀번호, 기존 비밀번호 -> NULL)
             case R.id.unlock:
+                String update_q = String.format("UPDATE PWDTB SET SET_VALUE = '0' WHERE SET_VALUE = '1'");
+                db.execSQL(update_q);
+                Toast.makeText(getApplicationContext(), "암호가 해제되었습니다.", Toast.LENGTH_SHORT).show();
                 // DB값 null로 업데이트 할 코드
                 // 다이얼로그로 확인 메시지 팝업
         }

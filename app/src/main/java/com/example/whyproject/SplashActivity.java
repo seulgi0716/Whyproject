@@ -50,7 +50,6 @@ public class SplashActivity extends Activity {
         try {
             Thread.sleep(3000);
 
-            // 디비에서 현재 암호 설정 여부 값 변수에 넣는 코드 작성
             if(set_value == 0) { // 암호가 설정되어 있지 않을 경우 메인 화면으로 바로
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
