@@ -101,14 +101,6 @@ public class WhoteaseActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
                     stress_list.setVisibility(View.INVISIBLE);
                 }
-
-
-                // db에서 cursor 써서 날짜값 search
-
-                //if(check_date.equals()) {
-
-               // }
-
             }
         });
 

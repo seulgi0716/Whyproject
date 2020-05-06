@@ -11,6 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,15 +27,24 @@ public class MainActivity extends AppCompatActivity {
     static DBHelper dhelper;
     static SQLiteDatabase db;
 
+    String today;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("나한테 왜그래?!");
 
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        today = sdf.format(date);
+        Toast.makeText(getApplicationContext(), today, Toast.LENGTH_SHORT).show();
+
         today_emo = (ImageView)findViewById(R.id.today_emo);
         // if문으로 db값에 있는 스트레스 지수로 바꿈
-
 
         for (int i = 0; i < button.length; i++) {
             int index = i;
