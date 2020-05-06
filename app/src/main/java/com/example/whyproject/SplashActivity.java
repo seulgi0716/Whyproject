@@ -2,14 +2,19 @@ package com.example.whyproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 
 public class SplashActivity extends Activity {
 
     static DBHelper dhelper;
     static SQLiteDatabase db;
-    //static MyCursorAdapter myCursorAdapter;
+    static Cursor cursor2;
+    static MyCursorAdapter2 myCursorAdapter2;
+
+
 
     final static String querySelectAll = "SELECT * FROM PWDTB";
 
@@ -20,20 +25,37 @@ public class SplashActivity extends Activity {
         // 디비 접근 및 검색 코드 작성
         dhelper = new DBHelper(this);
         db = dhelper.getWritableDatabase();
-        final String qq = "SELECT S_VALUE FROM PWDTB";
-        db.rawQuery(qq, null);
 
+        cursor2 = db.rawQuery(querySelectAll, null);
+        myCursorAdapter2 = new MyCursorAdapter2(this, cursor2);
+
+        String qq2 = String.format("SELECT SET_VALUE FROM PWDTB");
+        cursor2 = db.rawQuery(qq2, null);
+        cursor2.moveToFirst();
+        int set_value = 2;
+
+        try {
+            set_value = cursor2.getInt(0);
+            System.out.println("set_v1 : " + set_value);
+        } catch (Exception e) {
+            String insert_value = String.format("INSERT INTO PWDTB VALUES (null, '0','0');");
+            db.execSQL(insert_value);
+            cursor2 = db.rawQuery(querySelectAll, null);
+            //cursor2.moveToFirst();
+            myCursorAdapter2.changeCursor(cursor2);
+            set_value = cursor2.getInt(0);
+            System.out.println("set_v2 : " + set_value);
+        }
 
         try {
             Thread.sleep(3000);
 
             // 디비에서 현재 암호 설정 여부 값 변수에 넣는 코드 작성
-            int set = 1;
-            if(set == 1) { // 암호가 설정되어 있을 경우 암호 입력 창으로
-                startActivity(new Intent(this,MainActivity.class));
+            if(set_value == 0) { // 암호가 설정되어 있지 않을 경우 메인 화면으로 바로
+                startActivity(new Intent(this, MainActivity.class));
                 finish();
-            } else { // 암호가 설정되어 있지 않을 경우 메인 화면으로 바로
-                startActivity(new Intent(this,Trashcan.class));
+            } else if(set_value == 1){ // 암호가 설정되어 있을 경우 암호 입력 창으로
+                startActivity(new Intent(this, Trashcan.class));
                 finish();
             }
         } catch (InterruptedException e) {

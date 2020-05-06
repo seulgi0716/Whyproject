@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
-        super(context, "TEST2.db", null, 2);
+        super(context, "TEST3.db", null, 2);
     }
 
     //private static final String CreateTB = "CREATE TABLE IF NOT EXISTS " + AddFriends.TABLE_NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + AddFriends.KEY_NAME + " TEXT, " + AddFriends.KEY_PHONE + " TEXT);";
