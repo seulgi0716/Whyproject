@@ -51,7 +51,7 @@ public class SplashActivity extends Activity {
             Thread.sleep(3000);
 
             if(set_value == 0) { // 암호가 설정되어 있지 않을 경우 메인 화면으로 바로
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, PasswordActivity.class));
                 finish();
             } else if(set_value == 1){ // 암호가 설정되어 있을 경우 암호 입력 창으로
                 startActivity(new Intent(this, Trashcan.class));
