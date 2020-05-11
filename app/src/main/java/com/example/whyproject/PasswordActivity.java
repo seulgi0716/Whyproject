@@ -130,23 +130,6 @@ public class PasswordActivity extends AppCompatActivity {
                 }
             });
 
-//            pwdview.addTextChangedListener(new TextWatcher() {
-//                @Override
-//                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//                }
-//
-//                @Override
-//                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                    String input = pwdview.getText().toString();
-//                    countview.setText(input.length());
-//                }
-//
-//                @Override
-//                public void afterTextChanged(Editable editable) {
-//
-//                }
-//            });
 
             if(pwdview.getText().length() == 4) {
 
