@@ -3,7 +3,6 @@ package com.example.whyproject;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,12 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-public class PasswordActivity extends AppCompatActivity {
+public class CreatePassword extends AppCompatActivity {
 
     private Button btn[] = new Button[10];
     private int btnid[] = {R.id.one_btn, R.id.two_btn, R.id.three_btn, R.id.four_btn, R.id.five_btn, R.id.six_btn, R.id.seven_btn, R.id.eight_btn, R.id.nine_btn, R.id.zero_btn };
@@ -39,8 +35,7 @@ public class PasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_password);
-      //  setTitle("암호 설정");
+        setContentView(R.layout.activity_create_password);
 
         pwdview = findViewById(R.id.pwdview);
         first = findViewById(R.id.first_pwd);
@@ -181,35 +176,37 @@ public class PasswordActivity extends AppCompatActivity {
                     forth.setImageResource(R.drawable.green_dot);
                     Toast.makeText(getApplicationContext(), "4자리가 다 눌렸음!", Toast.LENGTH_SHORT).show();
 
-                    int pw = Integer.parseInt(pwdview.getText().toString());
+                    final int pw = Integer.parseInt(pwdview.getText().toString());
                     System.out.println("비밀번호 확인 : " + pw);
 
-                    try {
-                        String matchpw = String.format("SELECT PASSWORD FROM PWDTB");
-                        cursor = db.rawQuery(matchpw, null);
-                        cursor.moveToFirst();
-                        int searchpw = cursor.getInt(0);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CreatePassword.this);
+                    builder.setTitle("비밀번호 설정");
+                    builder.setMessage("비밀번호를 설정하시겠습니까?");
+                    builder.setPositiveButton("예",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    System.out.println("비밀번호 확인2 : " + pw);
+                                    String setpw = String.format("UPDATE PWDTB SET SET_VALUE = '1', PASSWORD = '%d';", pw);
+                                    db.execSQL(setpw);
+                                    cursor = db.rawQuery(querySelectAll, null);
+                                    myCursorAdapter.changeCursor(cursor);
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                    Toast.makeText(getApplicationContext(), "암호가 해제되었습니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    builder.setNegativeButton("아니오",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    pwdview.setText("");
+                                }
+                            });
+                    builder.show();
 
-                        if(searchpw == pw) {
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            pwdview.setText("");
-                            Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
-                        }
-
-                    } catch (Exception e) {
-                        pwdview.setText("");
-                        Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                    // DB의 비밀번호 값 확인하고 맞을시에 MAIN으로 넘어가게
                     break;
             }
 
         }
     };
-
 }

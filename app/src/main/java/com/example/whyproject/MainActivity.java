@@ -1,17 +1,21 @@
 package com.example.whyproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -107,14 +111,22 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case R.id.lock:
-                // 다이얼로그 띄워서 or 액티비티 하나 띄워서
-                // DB에 비밀번호를 업데이트 할 코드 (NULL -> 비밀번호, 기존 비밀번호 -> NULL)
+                Intent intent = new Intent(getApplicationContext(), CreatePassword.class);
+                startActivity(intent);
+                finish();
+                break;
+
             case R.id.unlock:
-           //     String update_q = String.format("UPDATE PWDTB SET SET_VALUE = '0' WHERE SET_VALUE = '1'");
-           //     db.execSQL(update_q);
-           //     Toast.makeText(getApplicationContext(), "암호가 해제되었습니다.", Toast.LENGTH_SHORT).show();
-                // DB값 null로 업데이트 할 코드
-                // 다이얼로그로 확인 메시지 팝업
+                try {
+                    String upquery = String.format("UPDATE PWDTB SET SET_VALUE = '0', PASSWORD = '0';");
+                    db.execSQL(upquery);
+                    cursor = db.rawQuery(querySelectAll, null);
+                    myCursorAdapter.changeCursor(cursor);
+                    Toast.makeText(getApplicationContext(), "암호가 해제되었습니다.", Toast.LENGTH_SHORT).show();
+                    break;
+
+                } catch (Exception e) {}
+
         }
         return false;
     }
