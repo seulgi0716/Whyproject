@@ -181,6 +181,7 @@ public class CreatePassword extends AppCompatActivity {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(CreatePassword.this);
                     builder.setTitle("비밀번호 설정");
+                    builder.setIcon(R.drawable.lockic);
                     builder.setMessage("비밀번호를 설정하시겠습니까?");
                     builder.setPositiveButton("예",
                             new DialogInterface.OnClickListener() {
