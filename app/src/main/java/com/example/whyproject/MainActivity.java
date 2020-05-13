@@ -118,11 +118,33 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.unlock:
                 try {
-                    String upquery = String.format("UPDATE PWDTB SET SET_VALUE = '0', PASSWORD = '0';");
-                    db.execSQL(upquery);
-                    cursor = db.rawQuery(querySelectAll, null);
-                    myCursorAdapter.changeCursor(cursor);
-                    Toast.makeText(getApplicationContext(), "암호가 해제되었습니다.", Toast.LENGTH_SHORT).show();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("비밀번호 해제");
+                    builder.setIcon(R.drawable.openic);
+                    builder.setMessage("비밀번호를 해제하시겠습니까?");
+
+                    builder.setPositiveButton("예",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    String upquery = String.format("UPDATE PWDTB SET SET_VALUE = '0', PASSWORD = '0';");
+                                    db.execSQL(upquery);
+                                    cursor = db.rawQuery(querySelectAll, null);
+                                    myCursorAdapter.changeCursor(cursor);
+                                    Toast.makeText(getApplicationContext(), "암호가 해제되었습니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    builder.setNegativeButton("아니오",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                    builder.show();
+
+
+
+                    // 다시한번 비밀번호를 확인하고 맞으면 해제
                     break;
 
                 } catch (Exception e) {}

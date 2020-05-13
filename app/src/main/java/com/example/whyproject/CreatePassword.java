@@ -179,10 +179,22 @@ public class CreatePassword extends AppCompatActivity {
                     final int pw = Integer.parseInt(pwdview.getText().toString());
                     System.out.println("비밀번호 확인 : " + pw);
 
+
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(CreatePassword.this);
-                    builder.setTitle("비밀번호 설정");
                     builder.setIcon(R.drawable.lockic);
-                    builder.setMessage("비밀번호를 설정하시겠습니까?");
+                    String valueq = String.format("SELECT SET_VALUE FROM PWDTB");
+                    cursor = db.rawQuery(valueq, null);
+                    cursor.moveToFirst();
+                    int searchvalue = cursor.getInt(0);
+                    if(searchvalue == 1) {
+                        builder.setTitle("비밀번호 변경");
+                        builder.setMessage("비밀번호를 변경 하시겠습니까?");
+                    } else if(searchvalue == 0) {
+                        builder.setTitle("비밀번호 설정");
+                        builder.setMessage("비밀번호를 설정 하시겠습니까?");
+                    }
+
                     builder.setPositiveButton("예",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
