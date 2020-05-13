@@ -38,11 +38,15 @@ public class SplashActivity extends Activity {
             set_value = cursor2.getInt(0);
             System.out.println("set_v1 : " + set_value);
         } catch (Exception e) {
-                String insert_value = String.format("INSERT INTO PWDTB VALUES(null, '0', '0');");
+                String insert_value = String.format("INSERT INTO PWDTB VALUES(null, '0', null);");
                 db.execSQL(insert_value);
                 cursor2 = db.rawQuery(querySelectAll, null);
-                cursor2.moveToFirst();
                 myCursorAdapter2.changeCursor(cursor2);
+
+                String qq3 = String.format("SELECT SET_VALUE FROM PWDTB");
+                cursor2 = db.rawQuery(qq3, null);
+                cursor2.moveToFirst();
+                //myCursorAdapter2.changeCursor(cursor2);
                 set_value = cursor2.getInt(0);
                 System.out.println("set_v2 : " + set_value);
 

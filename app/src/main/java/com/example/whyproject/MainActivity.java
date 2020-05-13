@@ -24,8 +24,8 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button[] = new Button[5];
-    private int btnid[] = {R.id.who, R.id.note, R.id.randompicker, R.id.punch, R.id.piechart};
+    private Button button[] = new Button[4];
+    private int btnid[] = {R.id.who, R.id.note, R.id.randompicker, R.id.punch};
     ImageView today_emo;
 
     /* DB 부분 */
@@ -36,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
     final static String querySelectAll = "SELECT * FROM PWDTB";
 
-    String today;
 
+    Date date = Calendar.getInstance().getTime();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d");
+    String today = sdf.format(date);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,7 @@ public class MainActivity extends AppCompatActivity {
         myCursorAdapter = new MyCursorAdapter2(this, cursor);
 
 
-        Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        today = sdf.format(date);
+
         Toast.makeText(getApplicationContext(), today, Toast.LENGTH_SHORT).show();
 
         today_emo = (ImageView)findViewById(R.id.today_emo);
@@ -94,14 +94,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Punch.class);
-                startActivity(intent);
-            }
-        });
-
-        button[4].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Chart.class);
                 startActivity(intent);
             }
         });

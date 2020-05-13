@@ -36,6 +36,7 @@ public class CreatePassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_password);
+        setTitle("비밀번호 설정/변경");
 
         pwdview = findViewById(R.id.pwdview);
         first = findViewById(R.id.first_pwd);
