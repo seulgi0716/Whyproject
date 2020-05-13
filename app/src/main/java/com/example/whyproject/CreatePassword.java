@@ -199,6 +199,7 @@ public class CreatePassword extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     System.out.println("비밀번호 확인2 : " + pw);
+
                                     String setpw = String.format("UPDATE PWDTB SET SET_VALUE = '1', PASSWORD = '%d';", pw);
                                     db.execSQL(setpw);
                                     cursor = db.rawQuery(querySelectAll, null);
@@ -206,7 +207,7 @@ public class CreatePassword extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);
                                     finish();
-                                    Toast.makeText(getApplicationContext(), "암호가 해제되었습니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "비밀번호가 해제되었습니다.", Toast.LENGTH_SHORT).show();
                                 }
                             });
                     builder.setNegativeButton("아니오",
@@ -219,7 +220,6 @@ public class CreatePassword extends AppCompatActivity {
 
                     break;
             }
-
         }
     };
 }

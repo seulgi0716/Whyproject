@@ -24,8 +24,8 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button[] = new Button[4];
-    private int btnid[] = {R.id.who, R.id.note, R.id.randompicker, R.id.punch};
+    private Button button[] = new Button[5];
+    private int btnid[] = {R.id.who, R.id.note, R.id.randompicker, R.id.punch, R.id.piechart};
     ImageView today_emo;
 
     /* DB 부분 */
@@ -97,6 +97,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        button[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Chart.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -127,11 +135,21 @@ public class MainActivity extends AppCompatActivity {
                     builder.setPositiveButton("예",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    String upquery = String.format("UPDATE PWDTB SET SET_VALUE = '0', PASSWORD = '0';");
-                                    db.execSQL(upquery);
-                                    cursor = db.rawQuery(querySelectAll, null);
-                                    myCursorAdapter.changeCursor(cursor);
-                                    Toast.makeText(getApplicationContext(), "암호가 해제되었습니다.", Toast.LENGTH_SHORT).show();
+
+
+                                    String valueq = String.format("SELECT SET_VALUE FROM PWDTB");
+                                    cursor = db.rawQuery(valueq, null);
+                                    cursor.moveToFirst();
+                                    int searchvalue2 = cursor.getInt(0);
+                                    if(searchvalue2 == 0) {
+                                        Toast.makeText(getApplicationContext(), "설정되어 있는 비밀번호가 없습니다!", Toast.LENGTH_SHORT).show();
+                                    } else if(searchvalue2 == 1) {
+                                        String upquery = String.format("UPDATE PWDTB SET SET_VALUE = '0', PASSWORD = '0';");
+                                        db.execSQL(upquery);
+                                        cursor = db.rawQuery(querySelectAll, null);
+                                        myCursorAdapter.changeCursor(cursor);
+                                        Toast.makeText(getApplicationContext(), "비밀번호가 해제되었습니다.", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             });
                     builder.setNegativeButton("아니오",
