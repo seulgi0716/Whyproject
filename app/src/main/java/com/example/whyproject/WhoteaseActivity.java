@@ -53,7 +53,8 @@ public class WhoteaseActivity extends AppCompatActivity {
     int year, month, day, s_value;
 
     final static String querySelectAll = String.format("SELECT * FROM STRESSTB");
-
+    static String check_date;
+    static String aa, bb, cc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +70,9 @@ public class WhoteaseActivity extends AppCompatActivity {
         calendar = findViewById(R.id.calendarView);
         stress_list = findViewById(R.id.stress_list);
 
-        cursor = db.rawQuery(querySelectAll, null);
-        myAdapter = new MyCursorAdapter(this, cursor);
+
+        //cursor = db.rawQuery(querySelectAll, null);
+        //myAdapter = new MyCursorAdapter(this, cursor);
         //stress_list.setAdapter(myAdapter);
 
         calendar.addDecorators(
@@ -97,27 +99,27 @@ public class WhoteaseActivity extends AppCompatActivity {
                 year = Integer.parseInt(parsedDATA[0]);
                 month = Integer.parseInt(parsedDATA[1]) + 1;
                 day = Integer.parseInt(parsedDATA[2]);
-                String check_date = year + "-" + month + "-" + day;
+                check_date = year + "-" + month + "-" + day;
 
-                String qq = String.format("SELECT S_CONTENT, S_VALUE FROM STRESSTB WHERE S_DATE = '%s';", check_date);
-                cursor = db.rawQuery(qq, null);
-                cursor.moveToFirst();
+//                String qq = String.format("SELECT S_CONTENT, S_VALUE FROM STRESSTB WHERE S_DATE = '%s';", check_date);
+//                cursor = db.rawQuery(qq, null);
+//
+//                System.out.println(qq);
+//                cursor.moveToFirst();
 
-                try {
-                    System.out.println("check_date : " + check_date);
-                    int count = cursor.getCount();
-                    System.out.println("count : " + count);
+                selectDB();
 
-                    String cd = cursor.getString(0);
-                    System.out.println("cd : " + cd);
-
+                int count = cursor.getCount();
+                if(count != 0) {
                     stress_list.setVisibility(View.VISIBLE);
-                    stress_list.setAdapter(myAdapter);
-                } catch (Exception e) {
+                } else if(count == 0) {
                     Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
                     stress_list.setVisibility(View.INVISIBLE);
                 }
+
             }
+
+
         });
 
 
@@ -316,16 +318,28 @@ public class WhoteaseActivity extends AppCompatActivity {
 
     }
 
-//    private void selectDB() {
-//        String sql = "SELECT * FROM STRESSTB;";
-//
-//        cursor = db.rawQuery(sql, null);
-//        if (cursor.getCount() > 0) {
-//            startManagingCursor(cursor);
-//            MyCursorAdapter dbAdapter = new MyCursorAdapter(this, cursor);
-//            stress_list.setAdapter(dbAdapter);
-//        }
-//    }
+    private void selectDB(){
+        String qq = String.format("SELECT * FROM STRESSTB WHERE S_DATE = '%s';", check_date);
+        System.out.println("check_date : " + check_date.getClass().getName());
+        cursor = db.rawQuery(qq, null);
+
+        try {
+            cursor.moveToFirst();
+            String bb = cursor.getString(cursor.getColumnIndex("S_DATE"));
+            System.out.println(bb.getClass().getName());
+            System.out.println("t/f : " + check_date.equals(bb));
+
+            int count = cursor.getCount();
+            System.out.println("count : " + count);
+            if(cursor.getCount() > 0){
+                startManagingCursor(cursor);
+                MyCursorAdapter myadapter = new MyCursorAdapter(this, cursor);
+                stress_list.setAdapter(myadapter);
+            }
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
 
 
