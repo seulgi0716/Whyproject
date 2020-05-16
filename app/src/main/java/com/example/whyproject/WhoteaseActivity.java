@@ -71,8 +71,8 @@ public class WhoteaseActivity extends AppCompatActivity {
         stress_list = findViewById(R.id.stress_list);
 
 
-        //cursor = db.rawQuery(querySelectAll, null);
-        //myAdapter = new MyCursorAdapter(this, cursor);
+        cursor = db.rawQuery(querySelectAll, null);
+        myAdapter = new MyCursorAdapter(this, cursor);
         //stress_list.setAdapter(myAdapter);
 
         calendar.addDecorators(
@@ -101,12 +101,6 @@ public class WhoteaseActivity extends AppCompatActivity {
                 day = Integer.parseInt(parsedDATA[2]);
                 check_date = year + "-" + month + "-" + day;
 
-//                String qq = String.format("SELECT S_CONTENT, S_VALUE FROM STRESSTB WHERE S_DATE = '%s';", check_date);
-//                cursor = db.rawQuery(qq, null);
-//
-//                System.out.println(qq);
-//                cursor.moveToFirst();
-
                 selectDB();
 
                 int count = cursor.getCount();
@@ -116,10 +110,7 @@ public class WhoteaseActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
                     stress_list.setVisibility(View.INVISIBLE);
                 }
-
             }
-
-
         });
 
 
@@ -237,16 +228,7 @@ public class WhoteaseActivity extends AppCompatActivity {
                             String ins_q1 = String.format("INSERT INTO STRESSTB VALUES (null, '%s', '%s', '%d');", s_date, stress_con, db_stress);
                             db.execSQL(ins_q1);
                             Toast.makeText(getApplicationContext(), "날짜 : " + s_date + ", 스트레스 내용 : " + stress_con + ", 스트레스 수치 : " + db_stress, Toast.LENGTH_SHORT).show();
-                            cursor = db.rawQuery(querySelectAll, null);
-                            myAdapter.changeCursor(cursor);
-
-                            String viewq = String.format("SELECT S_CONTENT, S_VALUE FROM STRESSTB WHERE S_DATE = '%s';", s_date);
-                            cursor = db.rawQuery(viewq, null);
-                            cursor.moveToFirst();
-                            stress_list.setAdapter(myAdapter);
-                            stress_list.setVisibility(View.VISIBLE);
-
-
+                            selectDB();
                         } catch (Exception e) {
                         }
                     }
@@ -262,13 +244,15 @@ public class WhoteaseActivity extends AppCompatActivity {
         stress_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                cursor = db.rawQuery(querySelectAll, null);
+                String qq = String.format("SELECT * FROM STRESSTB WHERE S_DATE = '%s';", check_date);
+                cursor = db.rawQuery(qq, null);
                 myAdapter.changeCursor(cursor);
+                cursor.moveToFirst();
                 cursor.moveToPosition(i);
                 final String ss = cursor.getString(cursor.getColumnIndex("S_DATE"));
                 final String cc = cursor.getString(cursor.getColumnIndex("S_CONTENT"));
                 final int vv = cursor.getInt(cursor.getColumnIndex("S_VALUE"));
-//                Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+
                 System.out.println("ss : " + ss);
                 System.out.println("cc : " + cc);
                 System.out.println("vv : " + vv);
@@ -284,11 +268,15 @@ public class WhoteaseActivity extends AppCompatActivity {
                             System.out.println("ss : " + ss);
                             String query = String.format("DELETE FROM STRESSTB WHERE S_DATE = '%s' and S_CONTENT = '%s' and S_VALUE = '%d';", ss, cc, vv);
                             db.execSQL(query);
-                            cursor = db.rawQuery(querySelectAll, null);
+                            String qq = String.format("SELECT * FROM STRESSTB WHERE S_DATE = '%s';", check_date);
+                            cursor = db.rawQuery(qq, null);
                             myAdapter.changeCursor(cursor);
                         } catch (Exception e) {
                         }
-                        //selectDB();
+
+                        selectDB();
+//                        cursor = db.rawQuery(querySelectAll, null);
+//                        myAdapter.changeCursor(cursor);
                         Toast.makeText(getApplicationContext(), "삭제되었습니다!", Toast.LENGTH_SHORT).show();
                     }
                 });
