@@ -269,9 +269,6 @@ public class WhoteaseActivity extends AppCompatActivity {
                             System.out.println("ss : " + ss);
                             String query = String.format("DELETE FROM STRESSTB WHERE S_DATE = '%s' and S_CONTENT = '%s' and S_VALUE = '%d';", ss, cc, vv);
                             db.execSQL(query);
-//                            String qq = String.format("SELECT * FROM STRESSTB WHERE S_DATE = '%s';", check_date);
-//                            cursor = db.rawQuery(qq, null);
-//                            myAdapter.changeCursor(cursor);
                             selectDB();
                         } catch (Exception e) {
                             Toast.makeText(getApplicationContext(), "aaaa", Toast.LENGTH_SHORT).show();
@@ -282,8 +279,6 @@ public class WhoteaseActivity extends AppCompatActivity {
                         if(count == 0) {
                             stress_list.setVisibility(View.INVISIBLE);
                         }
-//                        cursor = db.rawQuery(querySelectAll, null);
-//                        myAdapter.changeCursor(cursor);
                         Toast.makeText(getApplicationContext(), "삭제되었습니다!", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -310,7 +305,6 @@ public class WhoteaseActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     private void selectDB(){
