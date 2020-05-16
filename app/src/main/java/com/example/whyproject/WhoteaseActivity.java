@@ -229,6 +229,7 @@ public class WhoteaseActivity extends AppCompatActivity {
                             db.execSQL(ins_q1);
                             Toast.makeText(getApplicationContext(), "날짜 : " + s_date + ", 스트레스 내용 : " + stress_con + ", 스트레스 수치 : " + db_stress, Toast.LENGTH_SHORT).show();
                             selectDB();
+                            stress_list.setVisibility(View.VISIBLE);
                         } catch (Exception e) {
                         }
                     }
@@ -261,20 +262,26 @@ public class WhoteaseActivity extends AppCompatActivity {
 
                 build.setTitle("항목 삭제").setMessage("해당 항목을 삭제하시겠습니까?");
                 build.setIcon(R.drawable.soso);
-                build.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                build.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         try {
                             System.out.println("ss : " + ss);
                             String query = String.format("DELETE FROM STRESSTB WHERE S_DATE = '%s' and S_CONTENT = '%s' and S_VALUE = '%d';", ss, cc, vv);
                             db.execSQL(query);
-                            String qq = String.format("SELECT * FROM STRESSTB WHERE S_DATE = '%s';", check_date);
-                            cursor = db.rawQuery(qq, null);
-                            myAdapter.changeCursor(cursor);
+//                            String qq = String.format("SELECT * FROM STRESSTB WHERE S_DATE = '%s';", check_date);
+//                            cursor = db.rawQuery(qq, null);
+//                            myAdapter.changeCursor(cursor);
+                            selectDB();
                         } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(), "aaaa", Toast.LENGTH_SHORT).show();
                         }
+                        int count = cursor.getCount();
+                        System.out.println("delete : " + count);
 
-                        selectDB();
+                        if(count == 0) {
+                            stress_list.setVisibility(View.INVISIBLE);
+                        }
 //                        cursor = db.rawQuery(querySelectAll, null);
 //                        myAdapter.changeCursor(cursor);
                         Toast.makeText(getApplicationContext(), "삭제되었습니다!", Toast.LENGTH_SHORT).show();
