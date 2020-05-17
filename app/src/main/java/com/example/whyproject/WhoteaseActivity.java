@@ -37,8 +37,8 @@ public class WhoteaseActivity extends AppCompatActivity {
     MaterialCalendarView calendar;
     private final MainActivity ma = new MainActivity();
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
-    private Button add;
-    private ImageButton chart;
+    //private Button add;
+    private ImageButton chart, add;
     private ListView stress_list;
 
     static DBHelper mHelper;
@@ -70,6 +70,7 @@ public class WhoteaseActivity extends AppCompatActivity {
         calendar = findViewById(R.id.calendarView);
         stress_list = findViewById(R.id.stress_list);
 
+        add.setVisibility(View.INVISIBLE);
 
         cursor = db.rawQuery(querySelectAll, null);
         myAdapter = new MyCursorAdapter(this, cursor);
@@ -100,6 +101,8 @@ public class WhoteaseActivity extends AppCompatActivity {
                 month = Integer.parseInt(parsedDATA[1]) + 1;
                 day = Integer.parseInt(parsedDATA[2]);
                 check_date = year + "-" + month + "-" + day;
+
+                add.setVisibility(View.VISIBLE);
 
                 selectDB();
 

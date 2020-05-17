@@ -77,28 +77,46 @@ public class Chart extends AppCompatActivity {
         pieChart.setDrawHoleEnabled(false);
         pieChart.setHoleColor(Color.WHITE);
         pieChart.setTransparentCircleRadius(61f);
+        pieChart.setEntryLabelColor(Color.BLACK);
 
         ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
 
-        for (int i=0; i<cursor.getCount(); i++) {
-            yValues.add(new PieEntry((chart_value.get(i)),chart_content.get(i)));
+
+        if(chart_value.size() >= 10 && chart_content.size() >= 10) {
+            int c = cursor.getCount();
+            System.out.println("c : " + c);
+            c = 10;
+
+            for (int i=0; i<c; i++) {
+                yValues.add(new PieEntry((chart_value.get(i)),chart_content.get(i)));
+            }
+
+        } else {
+            for (int i=0; i<cursor.getCount(); i++) {
+                yValues.add(new PieEntry((chart_value.get(i)),chart_content.get(i)));
+            }
         }
+
+
+
 
         Description description = new Description();
         description.setText("스트레스 요인"); //라벨
         description.setTextSize(15);
         pieChart.setDescription(description);
 
-        pieChart.animateXY(1000, 3000); //애니메이션
+        pieChart.animateXY(1000, 1000); //애니메이션
 
         PieDataSet dataSet = new PieDataSet(yValues,"stress");
-        dataSet.setSliceSpace(3f);
-        dataSet.setSelectionShift(5f);
-        dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+//        dataSet.setSliceSpace(3f);
+//        dataSet.setSelectionShift(5f);
+//        dataSet.setValueTextSize(15f);
+        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
 
         PieData data = new PieData((dataSet));
         data.setValueTextSize(20f);
-        data.setValueTextColor(Color.YELLOW);
+        data.setValueTextColor(Color.BLACK);
 
         pieChart.setData(data);
 

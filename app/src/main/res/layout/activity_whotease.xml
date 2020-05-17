@@ -28,20 +28,21 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/add_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:text="추가"
+            android:background="@drawable/tool"
             android:layout_marginLeft="120dp">
-        </Button>
+        </ImageButton>
 
         <ImageButton
             android:id="@+id/piechart"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/chart"
-            android:layout_marginLeft="80dp"></ImageButton>
+            android:layout_marginLeft="90dp"></ImageButton>
     </LinearLayout>
 
     <ListView
