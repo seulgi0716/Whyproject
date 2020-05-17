@@ -55,10 +55,29 @@ public class MainActivity extends AppCompatActivity {
         myCursorAdapter = new MyCursorAdapter2(this, cursor);
 
 
-
         Toast.makeText(getApplicationContext(), today, Toast.LENGTH_SHORT).show();
 
-        today_emo = (ImageView)findViewById(R.id.today_emo);
+        today_emo = (ImageView) findViewById(R.id.today_emo);
+        System.out.println("aa");
+
+        cursor = db.rawQuery(querySelectAll, null);
+        String selectq = String.format("SELECT SUM(S_VALUE) as SUM FROM STRESSTB WHERE S_DATE = '%s';", today);
+        System.out.println("today : " + today);
+        cursor = db.rawQuery(selectq, null);
+        cursor.moveToFirst();
+        int sum_value = cursor.getInt(cursor.getColumnIndex("SUM"));
+        System.out.println("sum_value : " + sum_value);
+
+        if(sum_value <= 10){
+            today_emo.setImageResource(R.drawable.happy);
+        }
+        if(sum_value > 10 && sum_value <= 150) {
+            today_emo.setImageResource(R.drawable.soso);
+        }
+        if(sum_value > 150) {
+            today_emo.setImageResource(R.drawable.unhappy);
+        }
+
         // if문으로 db값에 있는 스트레스 지수로 바꿈
 
         for (int i = 0; i < button.length; i++) {
@@ -151,8 +170,6 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                     builder.show();
-
-
 
                     // 다시한번 비밀번호를 확인하고 맞으면 해제
                     break;

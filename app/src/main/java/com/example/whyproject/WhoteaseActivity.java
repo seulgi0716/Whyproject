@@ -134,7 +134,6 @@ public class WhoteaseActivity extends AppCompatActivity {
 
                 LinearLayout lay2 = new LinearLayout(WhoteaseActivity.this);
                 lay2.setOrientation(LinearLayout.HORIZONTAL);
-                ;
 
                 LinearLayout lay3 = new LinearLayout(WhoteaseActivity.this);
                 lay3.setOrientation(LinearLayout.VERTICAL);
@@ -331,6 +330,15 @@ public class WhoteaseActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
+
     }
 }
 
