@@ -37,7 +37,6 @@ public class WhoteaseActivity extends AppCompatActivity {
     MaterialCalendarView calendar;
     private final MainActivity ma = new MainActivity();
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
-    //private Button add;
     private ImageButton chart, add;
     private ListView stress_list;
 
@@ -338,7 +337,6 @@ public class WhoteaseActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
         super.onBackPressed();
-
     }
 }
 
