@@ -19,7 +19,9 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="버리고 싶은 말을 적어주세요"
-            android:textSize="20dp"></EditText>
+            android:fontFamily="@font/upfont"
+            android:textColor="#000000"
+            android:textSize="30dp"></EditText>
 
         <ImageButton
             android:id="@+id/throwbtn"
@@ -35,11 +37,26 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="120dp">
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:id="@+id/papertv"
+            android:layout_width="380dp"
+            android:layout_height="200dp"
+            android:fontFamily="@font/upfontb"
+            android:textColor="#000000"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:textSize="30dp"
+            android:background="@drawable/paper"></TextView>
 
         <ImageView
-            android:layout_width="250dp"
-            android:layout_height="300dp"
+            android:id="@+id/trashcan"
+            android:layout_marginTop="50dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:src="@drawable/emptycan">
         </ImageView>
 
