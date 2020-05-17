@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -162,6 +163,21 @@ public class WhoteaseActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams parammargin1 = new LinearLayout.LayoutParams(600, LinearLayout.LayoutParams.MATCH_PARENT);
                 parammargin1.setMargins(0, 20, 0, 0);
 
+                String queryAuto = String.format("SELECT DISTINCT S_CONTENT FROM STRESSTB;");
+                cursor = db.rawQuery(queryAuto, null);
+                cursor.moveToFirst();
+                int alength = cursor.getCount();
+
+                String arrcontent[] = new String[alength];
+                for(int i=0; i < arrcontent.length; i++) {
+                    arrcontent[i] = cursor.getString(0);
+                    cursor.moveToNext();
+                }
+
+                ArrayAdapter<String> contentadapter = new ArrayAdapter<String>(WhoteaseActivity.this, android.R.layout.simple_dropdown_item_1line, arrcontent);
+                add_stress.setAdapter(contentadapter);
+
+
                 final TextView st = new TextView(WhoteaseActivity.this);
                 st.setText("어느정도야?");
                 st.setTextSize(20);
@@ -180,23 +196,22 @@ public class WhoteaseActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams parammargin4 = new LinearLayout.LayoutParams(650, LinearLayout.LayoutParams.MATCH_PARENT);
                 parammargin4.setMargins(0, 20, 0, 0);
 
+                stress_value.setProgressDrawable();
+
                 stress_value.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                         s_value = stress_value.getProgress();
                         update();
                     }
-
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         s_value = stress_value.getProgress();
                     }
-
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         s_value = stress_value.getProgress();
                     }
-
                     public void update() {
                         show_sv.setText(new StringBuilder().append(s_value));
                     }
