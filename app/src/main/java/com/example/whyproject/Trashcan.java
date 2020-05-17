@@ -36,6 +36,13 @@ public class Trashcan extends AppCompatActivity {
 
         papertv.setVisibility(View.INVISIBLE);
 
+        writetrash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trashcan.setImageResource(R.drawable.emptycan);
+            }
+        });
+
         throwbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +63,6 @@ public class Trashcan extends AppCompatActivity {
                                 trashcan.setImageResource(R.drawable.can);
                                 papertv.setVisibility(View.INVISIBLE);
                             }
-
                             public void onAnimationStart(Animation animation){;}
                             public void onAnimationRepeat(Animation animation){;}
                         });
