@@ -89,7 +89,7 @@ public class Chart extends AppCompatActivity {
         description.setTextSize(15);
         pieChart.setDescription(description);
 
-        pieChart.animateXY(1000, 5000); //애니메이션
+        pieChart.animateXY(1000, 3000); //애니메이션
 
         PieDataSet dataSet = new PieDataSet(yValues,"stress");
         dataSet.setSliceSpace(3f);
@@ -97,54 +97,12 @@ public class Chart extends AppCompatActivity {
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
 
         PieData data = new PieData((dataSet));
-        data.setValueTextSize(10f);
+        data.setValueTextSize(20f);
         data.setValueTextColor(Color.YELLOW);
 
         pieChart.setData(data);
 
-
-
-      //  while () {
-//            String cc = cursor.getString(cursor.getColumnIndex("S_CONTENT"));
-//            System.out.println("abcd : " + cc);
-//            chart_content.add(cc);
-//            int cv = cursor.getInt(cursor.getColumnIndex("COUNT"));
-//            chart_value.add(cv);
-      //  }
-
-//        if(cursor.getCount() > 0){
-//            startManagingCursor(cursor);
-//          //  MyCursorAdapter myadapter = new MyCursorAdapter(this, cursor);
-//            chart_content.add(cursor.getString(cursor.getColumnIndex("S_CONTENT")));
-//            //int b = cursor.getInt(cursor.getColumnIndex("COUNT"));
-//
-//            for(int index=0; index < cursor.getCount(); index++) {
-//                System.out.println("CC" + chart_content.get(index));
-//                System.out.println("CV" + chart_value.get(index));
-//            }
         }
 
     }
-//    private void selectDB(){
-//        String qq = String.format("SELECT * FROM STRESSTB WHERE S_DATE = '%s';", check_date);
-//        System.out.println("check_date : " + check_date.getClass().getName());
-//        cursor = db.rawQuery(qq, null);
-//
-//        try {
-//            cursor.moveToFirst();
-//            String bb = cursor.getString(cursor.getColumnIndex("S_DATE"));
-//            System.out.println(bb.getClass().getName());
-//            System.out.println("t/f : " + check_date.equals(bb));
-//
-//            int count = cursor.getCount();
-//            System.out.println("count : " + count);
-//            if(cursor.getCount() > 0){
-//                startManagingCursor(cursor);
-//                MyCursorAdapter myadapter = new MyCursorAdapter(this, cursor);
-//                stress_list.setAdapter(myadapter);
-//            }
-//        } catch (Exception e) {
-//            Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//}
+
