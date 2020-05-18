@@ -52,7 +52,7 @@
             ></Button>
 
         <TextView
-            android:layout_width="10dp"
+            android:layout_width="5dp"
             android:layout_height="wrap_content">
         </TextView>
 
@@ -74,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <Button
@@ -90,7 +90,7 @@
                 ></Button>
 
             <TextView
-                android:layout_width="10dp"
+                android:layout_width="5dp"
                 android:layout_height="wrap_content">
             </TextView>
 
