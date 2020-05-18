@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/why_ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreatePassword"></activity>
+        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".CreatePassword" />
         <activity android:name=".PasswordActivity" />
         <activity android:name=".Chart" />
         <activity android:name=".Punch" />
