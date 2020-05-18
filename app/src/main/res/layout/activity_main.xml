@@ -37,35 +37,36 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="60dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/who"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
             android:text="누가 괴롭혔어?!"
             android:textSize="25dp"
             android:padding="10dp"
             android:fontFamily="@font/upfont"
             android:textColor="#000000"
-            android:background="@drawable/circle"
+            android:background="#8AAAE7"
             ></Button>
 
-        <TextView
+        <!--TextView
             android:layout_width="5dp"
             android:layout_height="wrap_content">
-        </TextView>
+        </TextView-->
 
         <Button
             android:id="@+id/note"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
             android:text="괜찮아 다 말해봐!"
             android:textSize="25dp"
             android:padding="10dp"
             android:fontFamily="@font/upfont"
             android:textColor="#000000"
-            android:background="@drawable/circle2"
+            android:layout_marginTop="20dp"
+            android:background="#8AAAE7"
             ></Button>
 
     </LinearLayout>
@@ -74,36 +75,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/randompicker"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="250dp"
+                android:layout_height="80dp"
                 android:text="알려줘요! 해소 방법"
                 android:padding="10dp"
                 android:textSize="25dp"
                 android:fontFamily="@font/upfont"
                 android:textColor="#000000"
-                android:background="@drawable/circle2"
+                android:background="#8AAAE7"
                 ></Button>
 
             <TextView
-                android:layout_width="5dp"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content">
             </TextView>
 
             <Button
                 android:id="@+id/punch"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="250dp"
+                android:layout_height="80dp"
                 android:text="풀자! 스트레스!"
                 android:textSize="25dp"
                 android:padding="10dp"
                 android:fontFamily="@font/upfont"
                 android:textColor="#000000"
-                android:background="@drawable/circle"
+                android:background="#8AAAE7"
                 ></Button>
 
         </LinearLayout>
