@@ -54,13 +54,8 @@ public class RandomPicker extends AppCompatActivity {
         slot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
                 SoundManager.playSound(1,1);
                 slot.setBackgroundDrawable(ContextCompat.getDrawable(RandomPicker.this, R.drawable.downslot));
-
-                //randomtv.animate().translationY(randomtv.getHeight()).setDuration(150).start();
 
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.translate);
                 randomtv.startAnimation(animation);
@@ -76,12 +71,10 @@ public class RandomPicker extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 slot.setBackgroundDrawable(ContextCompat.getDrawable(RandomPicker.this, R.drawable.upslot));
-                                SoundManager.stopSound(1);
                                 randomtv.setText("'?'");
                                 slot.setEnabled(true);
                             }
                         });
-
                     }
                     public void onAnimationStart(Animation animation){;}
                     public void onAnimationRepeat(Animation animation){;}

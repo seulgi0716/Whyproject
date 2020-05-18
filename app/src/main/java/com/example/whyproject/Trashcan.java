@@ -33,7 +33,6 @@ public class Trashcan extends AppCompatActivity {
         papertv = findViewById(R.id.papertv);
         throwbtn = findViewById(R.id.throwbtn);
         trashcan = findViewById(R.id.trashcan);
-
         papertv.setVisibility(View.INVISIBLE);
 
         writetrash.setOnClickListener(new View.OnClickListener() {
