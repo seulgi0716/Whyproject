@@ -25,6 +25,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="right"
             android:orientation="horizontal">
 
             <TextView
@@ -33,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/upfontb"
                 android:text=""
-                android:textColor="#000000"
+                android:textColor="#8AAAE7"
                 android:textSize="50dp"></TextView>
 
             <TextView
@@ -41,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/upfont"
                 android:text="를"
+
                 android:textColor="#000000"
                 android:textSize="50dp"></TextView>
 
@@ -61,16 +63,13 @@
             android:gravity="center"
             android:layout_marginTop="80dp">
 
-            <Button
+            <ImageButton
                 android:id="@+id/roll"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="돌려돌려 돌림판"></Button>
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/game"></ImageButton>
 
         </LinearLayout>
-
-
-
 
     </LinearLayout>
 
