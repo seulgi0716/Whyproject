@@ -190,10 +190,10 @@ public class CreatePassword extends AppCompatActivity {
                     int searchvalue = cursor.getInt(0);
                     if(searchvalue == 1) {
                         builder.setTitle("비밀번호 변경");
-                        builder.setMessage("비밀번호를 변경 하시겠습니까?");
+                        builder.setMessage("비밀번호를 변경하시겠습니까?");
                     } else if(searchvalue == 0) {
                         builder.setTitle("비밀번호 설정");
-                        builder.setMessage("비밀번호를 설정 하시겠습니까?");
+                        builder.setMessage("비밀번호를 설정하시겠습니까?");
                     }
 
                     builder.setPositiveButton("예",
@@ -208,7 +208,7 @@ public class CreatePassword extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);
                                     finish();
-                                    Toast.makeText(getApplicationContext(), "비밀번호가 해제되었습니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "비밀번호가 설정되었습니다.", Toast.LENGTH_SHORT).show();
                                 }
                             });
                     builder.setNegativeButton("아니오",
