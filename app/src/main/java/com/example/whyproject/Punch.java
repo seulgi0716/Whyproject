@@ -3,18 +3,22 @@ package com.example.whyproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Punch extends AppCompatActivity {
 
-    TextView timertv;
+    TextView timertv, countview2;
     MyTimer myTimer;
     Button ranking, start, resetbtn;
     Vibrator mVibe;
@@ -35,7 +39,10 @@ public class Punch extends AppCompatActivity {
         resetbtn = findViewById(R.id.resetbtn);
         target = findViewById(R.id.target);
         target_name = findViewById(R.id.target_name);
+        countview2 = findViewById(R.id.countview2);
 
+        countview2.addTextChangedListener(watcher);
+        countview2.setVisibility(View.INVISIBLE);
         myTimer = new MyTimer(30000, 1000);
 
         target.setEnabled(false);
@@ -46,11 +53,8 @@ public class Punch extends AppCompatActivity {
               //  target.setEnabled(false);
                 myTimer.start();
                 mVibe.vibrate(150);
-
-
             }
         });
-
 
 
         resetbtn.setOnClickListener(new View.OnClickListener() {
@@ -60,13 +64,19 @@ public class Punch extends AppCompatActivity {
                 timertv.setText("30 초");
                 touchcount = 0;
                 target.setEnabled(false);
+                target.setBackgroundResource(R.drawable.building);
             }
         });
 
+        ranking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     public class MyTimer extends CountDownTimer {
-
 
         public MyTimer(long millisInFuture, long countDownInterval)
         {
@@ -82,6 +92,7 @@ public class Punch extends AppCompatActivity {
                 public void onClick(View view) {
                     touchcount++;
                     System.out.println(touchcount);
+                    countview2.setText(String.valueOf(touchcount));
                 }
             });
         }
@@ -92,5 +103,31 @@ public class Punch extends AppCompatActivity {
             target.setEnabled(false);
         }
     }
+
+    private TextWatcher watcher = new TextWatcher() {
+        @Override
+        public void afterTextChanged(Editable edit) {
+            // Text가 바뀌고 동작할 코드
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // Text가 바뀌기 전 동작할 코드
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            touchcount = Integer.parseInt(s.toString());
+            if(touchcount >= 31 && touchcount <= 60) {
+                target.setBackgroundResource(R.drawable.fire);
+            } else if(touchcount >= 61 && touchcount <= 120) {
+                target.setBackgroundResource(R.drawable.broke1);
+            } else if(touchcount >= 121 && touchcount <= 150) {
+                target.setBackgroundResource(R.drawable.broke2);
+            } else if(touchcount >= 151){
+                target.setBackgroundResource(R.drawable.broke3);
+            }
+        }
+    };
 
 }
