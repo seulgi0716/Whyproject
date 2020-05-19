@@ -4,6 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameRanking">
+    tools:context=".GameRanking"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/crown"
+        ></ImageView>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="명예의 전당 TOP 5!"
+        android:textColor="#000000"
+        android:fontFamily="@font/upfontb"
+        android:textSize="48dp">
+    </TextView>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="스트레스"
+            android:textColor="#000000"
+            android:textSize="30dp"
+            android:fontFamily="@font/upfontb"
+            android:layout_marginRight="160dp"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="타격횟수"
+            android:textColor="#000000"
+            android:textSize="30dp"
+            android:fontFamily="@font/upfontb"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="360dp">
+
+        <ListView
+            android:id="@+id/ranklv"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

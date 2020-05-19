@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -25,8 +29,16 @@ public class Punch extends AppCompatActivity {
     Vibrator mVibe;
     ImageButton target, ranking;
     EditText target_name;
-    int touchcount = 0;
+    int touchcount=0;
     Intent intent;
+    String targetn;
+
+    static DBHelper mHelper;
+    static SQLiteDatabase db;
+    static Cursor cursor;
+    static MyCursorAdapter2 myAdapter;
+    final static String querySelectAll = String.format("SELECT * FROM RANKTB");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +55,28 @@ public class Punch extends AppCompatActivity {
         target_name = findViewById(R.id.target_name);
         countview2 = findViewById(R.id.countview2);
 
+      //  target_name.addTextChangedListener(watcher2);
         countview2.addTextChangedListener(watcher);
         countview2.setVisibility(View.INVISIBLE);
         myTimer = new MyTimer(30000, 1000);
 
         target.setEnabled(false);
 
+        mHelper = new DBHelper(this);
+        db = mHelper.getWritableDatabase();
+        cursor = db.rawQuery(querySelectAll, null);
+        myAdapter = new MyCursorAdapter2(this, cursor);
+
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myTimer.start();
-                mVibe.vibrate(150);
+                if (target_name.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "타겟이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    targetn = target_name.getText().toString();
+                    myTimer.start();
+                    mVibe.vibrate(150);
+                }
             }
         });
 
@@ -65,7 +88,7 @@ public class Punch extends AppCompatActivity {
                 touchcount = 0;
                 target.setEnabled(false);
                 target.setBackgroundResource(R.drawable.building);
-                timertv.setTextColor(Color.RED);
+                timertv.setTextColor(Color.BLACK);
             }
         });
 
@@ -74,7 +97,6 @@ public class Punch extends AppCompatActivity {
             public void onClick(View view) {
                 intent = new Intent(getApplicationContext(), GameRanking.class);
                 startActivity(intent);
-                finish();
             }
         });
     }
@@ -109,6 +131,12 @@ public class Punch extends AppCompatActivity {
         public void onFinish() {
             timertv.setText("0 초");
             target.setEnabled(false);
+            // db 저장
+            System.out.println("targetn : " + targetn + ", touchcount : " + touchcount);
+            String insertresult = String.format("INSERT INTO RANKTB VALUES(null, '%s', '%d');", targetn, touchcount);
+            db.execSQL(insertresult);
+            cursor = db.rawQuery(querySelectAll, null);
+            myAdapter.changeCursor(cursor);
         }
     }
 
@@ -125,15 +153,18 @@ public class Punch extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+
             touchcount = Integer.parseInt(s.toString());
             if(touchcount >= 31 && touchcount <= 60) {
                 target.setBackgroundResource(R.drawable.fire);
-            } else if(touchcount >= 61 && touchcount <= 120) {
-                target.setBackgroundResource(R.drawable.broke1);
-            } else if(touchcount >= 121 && touchcount <= 150) {
-                target.setBackgroundResource(R.drawable.broke2);
-            } else if(touchcount >= 151){
-                target.setBackgroundResource(R.drawable.broke3);
+            } else if(touchcount >= 61 && touchcount <= 100) {
+                target.setBackgroundResource(R.drawable.broke4);
+            } else if(touchcount >= 101 && touchcount <= 130) {
+                target.setBackgroundResource(R.drawable.broke5);
+            } else if(touchcount >= 131 && touchcount <= 170) {
+                target.setBackgroundResource(R.drawable.broke6);
+            } else if(touchcount >= 171) {
+                target.setBackgroundResource(R.drawable.broke7);
             }
         }
     };

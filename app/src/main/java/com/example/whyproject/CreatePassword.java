@@ -20,14 +20,17 @@ import android.widget.Toast;
 
 public class CreatePassword extends AppCompatActivity {
 
-    private Button btn[] = new Button[10];
-    private int btnid[] = {R.id.one_btn, R.id.two_btn, R.id.three_btn, R.id.four_btn, R.id.five_btn, R.id.six_btn, R.id.seven_btn, R.id.eight_btn, R.id.nine_btn, R.id.zero_btn };
+    private Button btn[] = new Button[11];
+    private int btnid[] = {R.id.one_btn, R.id.two_btn, R.id.three_btn, R.id.four_btn, R.id.five_btn, R.id.six_btn, R.id.seven_btn, R.id.eight_btn, R.id.nine_btn, R.id.zero_btn, R.id.del_btn};
     private EditText pwdview;
     private ImageView first, second, third, forth;
 
     static DBHelper dhelper;
     static SQLiteDatabase db;
     static Cursor cursor;
+
+    int b;
+
 
     final static String querySelectAll = "SELECT * FROM PWDTB";
 
@@ -49,7 +52,6 @@ public class CreatePassword extends AppCompatActivity {
         cursor = db.rawQuery(querySelectAll, null);
 
         for (int i = 0; i < btn.length; i++) {
-            int index = i;
             btn[i] = findViewById(btnid[i]);
         }
         pwdview.addTextChangedListener(watcher);
@@ -125,7 +127,11 @@ public class CreatePassword extends AppCompatActivity {
                 pwdview.setText(pwdview.getText().toString()+0);
             }
         });
+
+
+
     }
+
 
     private TextWatcher watcher = new TextWatcher() {
         @Override
@@ -139,7 +145,23 @@ public class CreatePassword extends AppCompatActivity {
         }
 
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        public void onTextChanged(CharSequence s, final int start, int before, int count) {
+
+            btn[10].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (pwdview.getText().toString().equals("")) {
+
+                    } else {
+                        String subpw = (pwdview.getText().toString()).substring(0,b-1);
+                        System.out.println("subpw : " + subpw);
+                        pwdview.setText(subpw);
+                        System.out.println("b : " + b);
+                    }
+                }
+            });
+
+
             int len = s.length();
             switch (len) {
                 case 0:
@@ -153,24 +175,28 @@ public class CreatePassword extends AppCompatActivity {
                     second.setImageResource(R.drawable.blue_dot);
                     third.setImageResource(R.drawable.blue_dot);
                     forth.setImageResource(R.drawable.blue_dot);
+                    b = 1;
                     break;
                 case 2:
                     first.setImageResource(R.drawable.green_dot);
                     second.setImageResource(R.drawable.green_dot);
                     third.setImageResource(R.drawable.blue_dot);
                     forth.setImageResource(R.drawable.blue_dot);
+                    b = 2;
                     break;
                 case 3:
                     first.setImageResource(R.drawable.green_dot);
                     second.setImageResource(R.drawable.green_dot);
                     third.setImageResource(R.drawable.green_dot);
                     forth.setImageResource(R.drawable.blue_dot);
+                    b = 3;
                     break;
                 case 4:
                     first.setImageResource(R.drawable.green_dot);
                     second.setImageResource(R.drawable.green_dot);
                     third.setImageResource(R.drawable.green_dot);
                     forth.setImageResource(R.drawable.green_dot);
+                    b = 4;
 
                     final int pw = Integer.parseInt(pwdview.getText().toString());
                     System.out.println("비밀번호 확인 : " + pw);
@@ -207,6 +233,9 @@ public class CreatePassword extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     pwdview.setText("");
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
                                 }
                             });
                     builder.show();
@@ -215,4 +244,11 @@ public class CreatePassword extends AppCompatActivity {
             }
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

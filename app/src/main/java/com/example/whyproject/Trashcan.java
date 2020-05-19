@@ -7,6 +7,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Trashcan extends AppCompatActivity {
 
@@ -46,28 +49,33 @@ public class Trashcan extends AppCompatActivity {
         throwbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                papertv.setVisibility(View.VISIBLE);
 
-                String writepaper = writetrash.getText().toString();
-                papertv.setText(writepaper);
+                if(writetrash.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "버릴 것이 없습니다!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    papertv.setVisibility(View.VISIBLE);
 
-                writetrash.setText("");
+                    String writepaper = writetrash.getText().toString();
+                    papertv.setText(writepaper);
 
-                papertv.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.scale);
-                        papertv.startAnimation(animation);
-                        animation.setAnimationListener(new Animation.AnimationListener(){
-                            public void onAnimationEnd(Animation animation){
-                                trashcan.setImageResource(R.drawable.can);
-                                papertv.setVisibility(View.INVISIBLE);
-                            }
-                            public void onAnimationStart(Animation animation){;}
-                            public void onAnimationRepeat(Animation animation){;}
-                        });
-                    }
-                });
+                    writetrash.setText("");
+
+                    papertv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.scale);
+                            papertv.startAnimation(animation);
+                            animation.setAnimationListener(new Animation.AnimationListener(){
+                                public void onAnimationEnd(Animation animation){
+                                    trashcan.setImageResource(R.drawable.can);
+                                    papertv.setVisibility(View.INVISIBLE);
+                                }
+                                public void onAnimationStart(Animation animation){;}
+                                public void onAnimationRepeat(Animation animation){;}
+                            });
+                        }
+                    });
+                }
             }
         });
     }
@@ -79,6 +87,5 @@ public class Trashcan extends AppCompatActivity {
         finish();
         super.onBackPressed();
     }
-
 }
 
