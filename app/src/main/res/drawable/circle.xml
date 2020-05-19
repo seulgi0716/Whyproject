@@ -6,10 +6,10 @@
     <corners
         android:bottomLeftRadius="20dp"
         android:bottomRightRadius="20dp"
-        android:topLeftRadius="20dp"
+        android:topLeftRadius="80dp"
         android:topRightRadius="20dp" />
     <stroke
-        android:width="6dp"
-        android:color="#8AAAE7" />
+        android:width="5dp"
+        android:color="#000000" />
     >
 </shape>

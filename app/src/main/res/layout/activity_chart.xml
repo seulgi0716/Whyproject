@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Chart">
+    tools:context=".Chart"
+    android:background="@drawable/back">
 
     <com.github.mikephil.charting.charts.PieChart
         android:layout_width="match_parent"

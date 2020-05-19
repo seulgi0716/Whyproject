@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/why_ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GameRanking"></activity>
+        <activity android:name=".GameRanking"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".CreatePassword" />
         <activity android:name=".PasswordActivity" />
         <activity android:name=".Chart" />

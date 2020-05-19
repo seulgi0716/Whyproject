@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".GameRanking"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/back">
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/crown"
         ></ImageView>
 
@@ -20,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="명예의 전당 TOP 5!"
         android:textColor="#000000"
-        android:fontFamily="@font/upfontb"
+        android:fontFamily="@font/goyang"
         android:textSize="48dp">
     </TextView>
 
@@ -36,8 +37,8 @@
             android:text="스트레스"
             android:textColor="#000000"
             android:textSize="30dp"
-            android:fontFamily="@font/upfontb"
-            android:layout_marginRight="160dp"></TextView>
+            android:fontFamily="@font/goyang"
+            android:layout_marginRight="150dp"></TextView>
 
         <TextView
             android:layout_width="match_parent"
@@ -45,13 +46,15 @@
             android:text="타격횟수"
             android:textColor="#000000"
             android:textSize="30dp"
-            android:fontFamily="@font/upfontb"></TextView>
+            android:fontFamily="@font/goyang"></TextView>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="360dp">
+        android:layout_height="350dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <ListView
             android:id="@+id/ranklv"

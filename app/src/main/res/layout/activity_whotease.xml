@@ -6,11 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WhoteaseActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/back">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp">
 
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -30,30 +32,35 @@
 
         <Button
             android:id="@+id/add_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
             android:layout_marginLeft="120dp"
             android:background="@drawable/circle3"
-            android:fontFamily="@font/upfontb"
+            android:fontFamily="@font/seoulnamsanb"
             android:textSize="23dp"
             android:textColor="#000000"
             android:text="작성하기"></Button>
 
         <ImageButton
             android:id="@+id/piechart"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:background="@drawable/chart"
             android:layout_marginLeft="90dp"></ImageButton>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/stress_list"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-    </ListView>
+        android:layout_height="wrap_content">
 
+        <ListView
+            android:id="@+id/stress_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+        </ListView>
+
+    </LinearLayout>
 
 
 </LinearLayout>

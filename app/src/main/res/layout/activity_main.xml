@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/back">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -20,14 +21,14 @@
             android:text="오늘의 스트레스 상태는?"
             android:layout_marginTop="5dp"
             android:textColor="#000000"
-            android:fontFamily="@font/upfont"
+            android:fontFamily="@font/goyang"
             android:layout_marginRight="10dp"
-            android:textSize="35dp"/>
+            android:textSize="32dp"/>
 
         <ImageView
             android:id="@+id/today_emo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/happy" />
     </LinearLayout>
 
@@ -45,7 +46,7 @@
             android:text="누가 괴롭혔어?!"
             android:textSize="25dp"
             android:padding="10dp"
-            android:fontFamily="@font/upfont"
+            android:fontFamily="@font/goyang"
             android:textColor="#000000"
             android:background="@drawable/circle"
             ></Button>
@@ -62,7 +63,7 @@
             android:text="괜찮아 다 말해봐!"
             android:textSize="25dp"
             android:padding="10dp"
-            android:fontFamily="@font/upfont"
+            android:fontFamily="@font/goyang"
             android:textColor="#000000"
             android:background="@drawable/circle2"
             ></Button>
@@ -78,13 +79,13 @@
         <Button
             android:id="@+id/randompicker"
             android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_height="180dp"
             android:text="알려줘요! 해소 방법"
             android:padding="10dp"
             android:textSize="25dp"
-            android:fontFamily="@font/upfont"
+            android:fontFamily="@font/goyang"
             android:textColor="#000000"
-            android:background="@drawable/circle2"
+            android:background="@drawable/circle5"
             ></Button>
 
         <TextView
@@ -95,13 +96,13 @@
         <Button
             android:id="@+id/punch"
             android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_height="180dp"
             android:text="풀자! 스트레스!"
             android:textSize="25dp"
             android:padding="10dp"
-            android:fontFamily="@font/upfont"
+            android:fontFamily="@font/goyang"
             android:textColor="#000000"
-            android:background="@drawable/circle"
+            android:background="@drawable/circle4"
             ></Button>
         </LinearLayout>
 

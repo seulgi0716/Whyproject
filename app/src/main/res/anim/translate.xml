@@ -4,6 +4,6 @@
     android:duration="100"
     android:fromYDelta="0"
     android:toYDelta="100%"
-    android:repeatCount="20"
+    android:repeatCount="15"
     android:repeatMode="reverse">
 </translate>

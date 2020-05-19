@@ -84,6 +84,7 @@ public class Punch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 myTimer.cancel();
+                target_name.setText("");
                 timertv.setText("30 초");
                 touchcount = 0;
                 target.setEnabled(false);
@@ -129,7 +130,8 @@ public class Punch extends AppCompatActivity {
 
         @Override
         public void onFinish() {
-            timertv.setText("0 초");
+            timertv.setText("타임 오버~!");
+            timertv.setTextColor(Color.RED);
             target.setEnabled(false);
             // db 저장
             System.out.println("targetn : " + targetn + ", touchcount : " + touchcount);

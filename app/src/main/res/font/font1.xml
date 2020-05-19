@@ -10,4 +10,19 @@
         android:fontWeight="400"
         android:font="@font/upfontb"></font>
 
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/bmhan"></font>
+
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/goyang"></font>
+
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/seoulnamsanb"></font>
+
 </font-family>

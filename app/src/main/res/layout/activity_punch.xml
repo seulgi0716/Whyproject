@@ -6,20 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".Punch"
     android:orientation="vertical"
-    android:background="#ffffff">
+    android:background="@drawable/back">
     
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="35dp">
 
         <TextView
             android:id="@+id/timertv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="30 초"
-            android:fontFamily="@font/upfontb"
+            android:fontFamily="@font/seoulnamsanb"
             android:textColor="#000000"
             android:textAlignment="center"
             android:textSize= "50dp" />
@@ -38,7 +39,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="타겟이름"
-            android:fontFamily="@font/upfontb"
+            android:fontFamily="@font/goyang"
             android:textColor="#000000"
             android:textAlignment="center"
             android:textSize= "30dp" />
@@ -75,10 +76,10 @@
 
             <Button
                 android:id="@+id/startbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="90dp"
+                android:layout_height="55dp"
                 android:textColor="#000000"
-                android:fontFamily="@font/upfontb"
+                android:fontFamily="@font/seoulnamsanb"
                 android:background="@drawable/circle3"
                 android:textSize="30dp"
                 android:layout_marginLeft="60dp"
@@ -87,10 +88,10 @@
 
             <Button
                 android:id="@+id/resetbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="90dp"
+                android:layout_height="55dp"
                 android:textColor="#000000"
-                android:fontFamily="@font/upfontb"
+                android:fontFamily="@font/seoulnamsanb"
                 android:background="@drawable/circle3"
                 android:textSize="30dp"
                 android:text="리셋"></Button>

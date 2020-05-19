@@ -5,54 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RandomPicker"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/back">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/upfont"
-            android:text="스트레스를 풀기 위해서"
-            android:textColor="#000000"
-            android:textSize="40dp"></TextView>
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <TextView
-                android:id="@+id/randomtv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/upfontb"
-                android:text="'?'"
-                android:textColor="#8AAAE7"
-                android:textSize="35dp"></TextView>
+                android:fontFamily="@font/seoulnamsanb"
+                android:text="스트레스를 풀기 위해서"
+                android:textColor="#000000"
+                android:layout_marginBottom="10dp"
+                android:textSize="38dp"></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/randomtv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/seoulnamsanb"
+                    android:text="'?'"
+                    android:textColor="#8AAAE7"
+                    android:textSize="40dp"></TextView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/seoulnamsanb"
+                android:layout_marginTop="10dp"
+                android:text="을/를 해보는 건 어떨까요??"
+                android:textColor="#000000"
+                android:textSize="40dp"></TextView>
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/upfont"
-            android:text="을/를 해보는 건 어떨까요??"
-            android:textColor="#000000"
-            android:textSize="40dp"></TextView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="60dp">
 
             <ImageButton
                 android:id="@+id/slot"
@@ -63,17 +75,22 @@
 
             <Button
                 android:id="@+id/reset"
-                android:layout_width="150dp"
+                android:layout_width="180dp"
                 android:layout_height="60dp"
                 android:text="다시 돌리기!"
                 android:textSize="30dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/circle3"
-                android:fontFamily="@font/upfontb"></Button>
+                android:fontFamily="@font/seoulnamsanb"></Button>
 
 
         </LinearLayout>
 
+
+
+
+
     </LinearLayout>
+
 
 </LinearLayout>

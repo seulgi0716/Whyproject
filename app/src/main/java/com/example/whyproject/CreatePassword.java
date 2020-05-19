@@ -12,6 +12,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -38,7 +40,8 @@ public class CreatePassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_password);
-        setTitle("비밀번호 설정/변경");
+        setTitle("암호 생성 / 변경");
+
 
         pwdview = findViewById(R.id.pwdview);
         first = findViewById(R.id.first_pwd);
