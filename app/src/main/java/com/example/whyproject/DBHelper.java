@@ -27,6 +27,4 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //public void InsertDB(SQLiteDatabase db, )
-
 }

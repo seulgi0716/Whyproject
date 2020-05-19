@@ -28,7 +28,6 @@ public class CreatePassword extends AppCompatActivity {
     static DBHelper dhelper;
     static SQLiteDatabase db;
     static Cursor cursor;
-    static MyCursorAdapter2 myCursorAdapter;
 
     final static String querySelectAll = "SELECT * FROM PWDTB";
 
@@ -47,9 +46,7 @@ public class CreatePassword extends AppCompatActivity {
         // 디비 접근 및 검색 코드 작성
         dhelper = new DBHelper(this);
         db = dhelper.getWritableDatabase();
-
         cursor = db.rawQuery(querySelectAll, null);
-        myCursorAdapter = new MyCursorAdapter2(this, cursor);
 
         for (int i = 0; i < btn.length; i++) {
             int index = i;
@@ -200,7 +197,6 @@ public class CreatePassword extends AppCompatActivity {
                                     String setpw = String.format("UPDATE PWDTB SET SET_VALUE = '1', PASSWORD = '%d';", pw);
                                     db.execSQL(setpw);
                                     cursor = db.rawQuery(querySelectAll, null);
-                                    myCursorAdapter.changeCursor(cursor);
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);
                                     finish();

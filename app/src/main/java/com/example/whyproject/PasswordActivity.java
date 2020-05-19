@@ -32,7 +32,6 @@ public class PasswordActivity extends AppCompatActivity {
     static DBHelper dhelper;
     static SQLiteDatabase db;
     static Cursor cursor;
-    static MyCursorAdapter2 myCursorAdapter;
 
     final static String querySelectAll = "SELECT * FROM PWDTB";
 
@@ -40,7 +39,6 @@ public class PasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
-      //  setTitle("암호 설정");
 
         pwdview = findViewById(R.id.pwdview);
         first = findViewById(R.id.first_pwd);
@@ -51,9 +49,7 @@ public class PasswordActivity extends AppCompatActivity {
         // 디비 접근 및 검색 코드 작성
         dhelper = new DBHelper(this);
         db = dhelper.getWritableDatabase();
-
         cursor = db.rawQuery(querySelectAll, null);
-        myCursorAdapter = new MyCursorAdapter2(this, cursor);
 
         for (int i = 0; i < btn.length; i++) {
             int index = i;

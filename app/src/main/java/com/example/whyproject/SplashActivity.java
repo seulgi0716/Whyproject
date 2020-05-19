@@ -12,9 +12,6 @@ public class SplashActivity extends Activity {
     static DBHelper dhelper;
     static SQLiteDatabase db;
     static Cursor cursor2;
-    static MyCursorAdapter2 myCursorAdapter2;
-
-
 
     final static String querySelectAll = "SELECT * FROM PWDTB";
 
@@ -27,7 +24,6 @@ public class SplashActivity extends Activity {
         db = dhelper.getWritableDatabase();
 
         cursor2 = db.rawQuery(querySelectAll, null);
-        myCursorAdapter2 = new MyCursorAdapter2(this, cursor2);
 
         String qq2 = String.format("SELECT SET_VALUE FROM PWDTB");
         cursor2 = db.rawQuery(qq2, null);
@@ -41,12 +37,10 @@ public class SplashActivity extends Activity {
                 String insert_value = String.format("INSERT INTO PWDTB VALUES(null, '0', null);");
                 db.execSQL(insert_value);
                 cursor2 = db.rawQuery(querySelectAll, null);
-                myCursorAdapter2.changeCursor(cursor2);
 
                 String qq3 = String.format("SELECT SET_VALUE FROM PWDTB");
                 cursor2 = db.rawQuery(qq3, null);
                 cursor2.moveToFirst();
-                //myCursorAdapter2.changeCursor(cursor2);
                 set_value = cursor2.getInt(0);
                 System.out.println("set_v2 : " + set_value);
 
