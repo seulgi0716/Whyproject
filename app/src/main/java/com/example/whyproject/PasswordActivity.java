@@ -61,6 +61,7 @@ public class PasswordActivity extends AppCompatActivity {
         }
 
         pwdview.addTextChangedListener(watcher);
+        pwdview.setVisibility(View.INVISIBLE);
 
 
         btn[0].setOnClickListener(new View.OnClickListener() {
@@ -148,7 +149,6 @@ public class PasswordActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             int len = s.length();
-            Toast.makeText(getApplicationContext(), "길이: " + len, Toast.LENGTH_SHORT).show();
             switch (len) {
                 case 0:
                     first.setImageResource(R.drawable.blue_dot);
@@ -179,7 +179,6 @@ public class PasswordActivity extends AppCompatActivity {
                     second.setImageResource(R.drawable.green_dot);
                     third.setImageResource(R.drawable.green_dot);
                     forth.setImageResource(R.drawable.green_dot);
-                    Toast.makeText(getApplicationContext(), "4자리가 다 눌렸음!", Toast.LENGTH_SHORT).show();
 
                     int pw = Integer.parseInt(pwdview.getText().toString());
                     System.out.println("비밀번호 확인 : " + pw);
@@ -203,9 +202,6 @@ public class PasswordActivity extends AppCompatActivity {
                         pwdview.setText("");
                         Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                     }
-
-
-                    // DB의 비밀번호 값 확인하고 맞을시에 MAIN으로 넘어가게
                     break;
             }
 

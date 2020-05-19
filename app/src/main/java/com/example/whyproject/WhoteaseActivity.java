@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -30,8 +31,9 @@ public class WhoteaseActivity extends AppCompatActivity {
     MaterialCalendarView calendar;
     private final MainActivity ma = new MainActivity();
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
-    private ImageButton chart, add;
+    private ImageButton chart;
     private ListView stress_list;
+    private Button add;
 
     static DBHelper mHelper;
     static SQLiteDatabase db;
@@ -46,7 +48,6 @@ public class WhoteaseActivity extends AppCompatActivity {
 
     final static String querySelectAll = String.format("SELECT * FROM STRESSTB");
     static String check_date;
-    static String aa, bb, cc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,6 @@ public class WhoteaseActivity extends AppCompatActivity {
 
         cursor = db.rawQuery(querySelectAll, null);
         myAdapter = new MyCursorAdapter(this, cursor);
-        //stress_list.setAdapter(myAdapter);
 
         calendar.addDecorators(
                 new SundayDecorator(),
@@ -177,7 +177,7 @@ public class WhoteaseActivity extends AppCompatActivity {
                 parammargin2.setMargins(180, 35, 0, 10);
 
                 final TextView show_sv = new TextView(WhoteaseActivity.this);
-                show_sv.setText("0");
+                show_sv.setText("1");
                 show_sv.setTextSize(20);
                 LinearLayout.LayoutParams parammargin3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 parammargin3.setMargins(20, 35, 0, 10);
@@ -236,7 +236,7 @@ public class WhoteaseActivity extends AppCompatActivity {
 
                             String ins_q1 = String.format("INSERT INTO STRESSTB VALUES (null, '%s', '%s', '%d');", s_date, stress_con, db_stress);
                             db.execSQL(ins_q1);
-                            Toast.makeText(getApplicationContext(), "날짜 : " + s_date + ", 스트레스 내용 : " + stress_con + ", 스트레스 수치 : " + db_stress, Toast.LENGTH_SHORT).show();
+                            System.out.println("날짜 : " + s_date + ", 스트레스 내용 : " + stress_con + ", 스트레스 수치 : " + db_stress);
                             selectDB();
                             stress_list.setVisibility(View.VISIBLE);
                         } catch (Exception e) {
@@ -295,7 +295,6 @@ public class WhoteaseActivity extends AppCompatActivity {
                 build.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
                     }
                 });
 
@@ -341,10 +340,9 @@ public class WhoteaseActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(WhoteaseActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
-        super.onBackPressed();
     }
 }
 

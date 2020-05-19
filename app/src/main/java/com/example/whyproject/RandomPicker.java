@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -73,6 +74,7 @@ public class RandomPicker extends AppCompatActivity {
                                 slot.setBackgroundDrawable(ContextCompat.getDrawable(RandomPicker.this, R.drawable.upslot));
                                 randomtv.setText("'?'");
                                 slot.setEnabled(true);
+                                reset.setVisibility(View.INVISIBLE);
                             }
                         });
                     }
@@ -90,5 +92,13 @@ public class RandomPicker extends AppCompatActivity {
     public void onDestory() {
         super.onDestroy();
         SoundManager.cleanup();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }

@@ -34,12 +34,16 @@ public class MainActivity extends AppCompatActivity {
     static Cursor cursor;
     static MyCursorAdapter2 myCursorAdapter;
 
+
     final static String querySelectAll = "SELECT * FROM PWDTB";
 
 
     Date date = Calendar.getInstance().getTime();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d");
     String today = sdf.format(date);
+
+    private long pressedTime = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
         myCursorAdapter = new MyCursorAdapter2(this, cursor);
 
 
-        Toast.makeText(getApplicationContext(), today, Toast.LENGTH_SHORT).show();
+        System.out.println("today : " + today);
 
-        today_emo = (ImageView) findViewById(R.id.today_emo);
+        today_emo = findViewById(R.id.today_emo);
         System.out.println("aa");
 
         cursor = db.rawQuery(querySelectAll, null);
@@ -78,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
             today_emo.setImageResource(R.drawable.unhappy);
         }
 
-        // if문으로 db값에 있는 스트레스 지수로 바꿈
-
         for (int i = 0; i < button.length; i++) {
             int index = i;
             button[i] = findViewById(btnid[i]);
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), WhoteaseActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -98,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Trashcan.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RandomPicker.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Punch.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -178,5 +184,24 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if ( pressedTime == 0 ) {
+            Toast.makeText(MainActivity.this, " 한 번 더 누르면 종료됩니다." , Toast.LENGTH_LONG).show();
+            pressedTime = System.currentTimeMillis();
+        }
+        else {
+            int seconds = (int) (System.currentTimeMillis() - pressedTime);
+
+            if (seconds > 2000) {
+                Toast.makeText(MainActivity.this, " 한 번 더 누르면 종료됩니다.", Toast.LENGTH_LONG).show();
+                pressedTime = 0;
+            } else {
+                finish();
+            }
+        }
     }
 }

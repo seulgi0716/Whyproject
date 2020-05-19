@@ -55,8 +55,8 @@ public class CreatePassword extends AppCompatActivity {
             int index = i;
             btn[i] = findViewById(btnid[i]);
         }
-
         pwdview.addTextChangedListener(watcher);
+        pwdview.setVisibility(View.INVISIBLE);
 
 
         btn[0].setOnClickListener(new View.OnClickListener() {
@@ -144,7 +144,6 @@ public class CreatePassword extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             int len = s.length();
-            Toast.makeText(getApplicationContext(), "길이: " + len, Toast.LENGTH_SHORT).show();
             switch (len) {
                 case 0:
                     first.setImageResource(R.drawable.blue_dot);
@@ -175,12 +174,9 @@ public class CreatePassword extends AppCompatActivity {
                     second.setImageResource(R.drawable.green_dot);
                     third.setImageResource(R.drawable.green_dot);
                     forth.setImageResource(R.drawable.green_dot);
-                    Toast.makeText(getApplicationContext(), "4자리가 다 눌렸음!", Toast.LENGTH_SHORT).show();
 
                     final int pw = Integer.parseInt(pwdview.getText().toString());
                     System.out.println("비밀번호 확인 : " + pw);
-
-
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(CreatePassword.this);
                     builder.setIcon(R.drawable.lockic);

@@ -65,30 +65,55 @@
         android:gravity="center"
         android:layout_marginTop="30dp">
 
-        <Button
-            android:id="@+id/startbtn"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:fontFamily="@font/upfont"
-            android:text="시작"></Button>
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/resetbtn"
-            android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/startbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:fontFamily="@font/upfontb"
+                android:background="@drawable/circle3"
+                android:textSize="30dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="20dp"
+                android:text="시작"></Button>
+
+            <Button
+                android:id="@+id/resetbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:fontFamily="@font/upfontb"
+                android:background="@drawable/circle3"
+                android:textSize="30dp"
+                android:text="리셋"></Button>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:fontFamily="@font/upfont"
-            android:text="리셋"></Button>
+            android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            android:gravity="right">
 
-        <Button
-            android:id="@+id/ranking"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:fontFamily="@font/upfont"
-            android:text="랭킹"></Button>
+            <ImageButton
+                android:id="@+id/ranking"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/cup"
+                android:fontFamily="@font/upfont"
+                android:text="랭킹"
+                android:textColor="#000000"></ImageButton>
 
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
@@ -97,8 +122,6 @@
         android:layout_height="wrap_content"
         android:text=""></TextView>
 
-
-
-
-
 </LinearLayout>
+
+

@@ -2,6 +2,7 @@ package com.example.whyproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -51,9 +52,9 @@ public class Chart extends AppCompatActivity {
         myAdapter.changeCursor(cursor);
         //cursor.moveToFirst();
 
-        System.out.println("count : "+ cursor.getCount());
+        System.out.println("count : " + cursor.getCount());
 
-        if (cursor != null && cursor.getCount() != 0){
+        if (cursor != null && cursor.getCount() != 0) {
             cursor.moveToFirst();
 
             do {
@@ -64,13 +65,13 @@ public class Chart extends AppCompatActivity {
                 chart_value.add(cv);
             } while (cursor.moveToNext());
 
-        }else{
+        } else {
 
         }
 
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
-        pieChart.setExtraOffsets(5,10,5,5);
+        pieChart.setExtraOffsets(5, 10, 5, 5);
 
         pieChart.setDragDecelerationFrictionCoef(0.95f);
 
@@ -82,22 +83,20 @@ public class Chart extends AppCompatActivity {
         ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
 
 
-        if(chart_value.size() >= 10 && chart_content.size() >= 10) {
+        if (chart_value.size() >= 10 && chart_content.size() >= 10) {
             int c = cursor.getCount();
             System.out.println("c : " + c);
             c = 10;
 
-            for (int i=0; i<c; i++) {
-                yValues.add(new PieEntry((chart_value.get(i)),chart_content.get(i)));
+            for (int i = 0; i < c; i++) {
+                yValues.add(new PieEntry((chart_value.get(i)), chart_content.get(i)));
             }
 
         } else {
-            for (int i=0; i<cursor.getCount(); i++) {
-                yValues.add(new PieEntry((chart_value.get(i)),chart_content.get(i)));
+            for (int i = 0; i < cursor.getCount(); i++) {
+                yValues.add(new PieEntry((chart_value.get(i)), chart_content.get(i)));
             }
         }
-
-
 
 
         Description description = new Description();
@@ -107,10 +106,7 @@ public class Chart extends AppCompatActivity {
 
         pieChart.animateXY(1000, 1000); //애니메이션
 
-        PieDataSet dataSet = new PieDataSet(yValues,"stress");
-//        dataSet.setSliceSpace(3f);
-//        dataSet.setSelectionShift(5f);
-//        dataSet.setValueTextSize(15f);
+        PieDataSet dataSet = new PieDataSet(yValues, "stress");
         dataSet.setValueTextColor(Color.BLACK);
         dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
 
@@ -120,7 +116,11 @@ public class Chart extends AppCompatActivity {
 
         pieChart.setData(data);
 
-        }
-
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+}

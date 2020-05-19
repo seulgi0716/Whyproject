@@ -63,11 +63,13 @@
 
             <Button
                 android:id="@+id/reset"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
                 android:text="다시 돌리기!"
+                android:textSize="30dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/upfont"></Button>
+                android:background="@drawable/circle3"
+                android:fontFamily="@font/upfontb"></Button>
 
 
         </LinearLayout>

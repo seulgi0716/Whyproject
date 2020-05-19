@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -20,11 +21,12 @@ public class Punch extends AppCompatActivity {
 
     TextView timertv, countview2;
     MyTimer myTimer;
-    Button ranking, start, resetbtn;
+    Button start, resetbtn;
     Vibrator mVibe;
-    ImageButton target;
+    ImageButton target, ranking;
     EditText target_name;
     int touchcount = 0;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +52,10 @@ public class Punch extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  target.setEnabled(false);
                 myTimer.start();
                 mVibe.vibrate(150);
             }
         });
-
 
         resetbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,13 +65,16 @@ public class Punch extends AppCompatActivity {
                 touchcount = 0;
                 target.setEnabled(false);
                 target.setBackgroundResource(R.drawable.building);
+                timertv.setTextColor(Color.RED);
             }
         });
 
         ranking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                intent = new Intent(getApplicationContext(), GameRanking.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -85,7 +88,12 @@ public class Punch extends AppCompatActivity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            timertv.setText(millisUntilFinished/1000 + " 초");
+            String remain = millisUntilFinished/1000 + " 초";
+            timertv.setText(remain);
+
+            if(remain.equals("10 초"))
+                timertv.setTextColor(Color.RED);
+
             target.setEnabled(true);
             target.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,4 +138,10 @@ public class Punch extends AppCompatActivity {
         }
     };
 
+    @Override
+    public void onBackPressed() {
+        intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
