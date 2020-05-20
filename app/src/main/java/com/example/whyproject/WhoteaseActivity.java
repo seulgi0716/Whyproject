@@ -340,9 +340,7 @@ public class WhoteaseActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(WhoteaseActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+
     }
 }
 

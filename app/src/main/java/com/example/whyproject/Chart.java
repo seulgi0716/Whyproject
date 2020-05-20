@@ -120,7 +120,6 @@ public class Chart extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+
     }
 }

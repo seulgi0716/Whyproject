@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("today : " + today);
 
         today_emo = findViewById(R.id.today_emo);
+
         System.out.println("aa");
 
         cursor = db.rawQuery(querySelectAll, null);
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), WhoteaseActivity.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Trashcan.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RandomPicker.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Punch.class);
                 startActivity(intent);
-                finish();
+
             }
         });
     }

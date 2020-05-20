@@ -3,6 +3,8 @@
     package="com.example.whyproject">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -10,16 +12,20 @@
         android:label="나한테 왜그래?!"
         android:roundIcon="@mipmap/why_ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GameRanking"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".GGang"
+            android:hardwareAccelerated="true"></activity>
+        <activity
+            android:name=".GameRanking"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".CreatePassword" />
         <activity android:name=".PasswordActivity" />
-        <activity android:name=".Chart" />
-        <activity android:name=".Punch" />
-        <activity android:name=".RandomPicker" />
-        <activity android:name=".Trashcan" />
-        <activity android:name=".WhoteaseActivity" />
+        <activity android:name=".Chart" android:parentActivityName=".WhoteaseActivity"/>
+        <activity android:name=".Punch" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".RandomPicker" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".Trashcan" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".WhoteaseActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashActivity"

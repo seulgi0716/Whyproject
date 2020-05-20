@@ -1,6 +1,8 @@
 package com.example.whyproject;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
@@ -20,7 +22,7 @@ import java.util.Random;
 
 public class RandomPicker extends AppCompatActivity {
 
-    private Button reset;
+    private Button reset, ggangbtn;
     private ImageButton slot;
     private TextView randomtv;
 
@@ -32,6 +34,9 @@ public class RandomPicker extends AppCompatActivity {
             "쓱싹쓱싹 청소하기", "즐거운 쇼핑하기", "팔다리 쭉쭉 스트레칭 하기", "평소에 즐겨하는 게임",
             "아무도 없는 곳에서 크게 욕하기", "땀 뻘뻘! 매운 음식 먹기"
     };
+
+    String aaaa = "둠칫둠칫 1깡하기";
+
     ArrayList<String> methodOfcancel = new ArrayList<>();
     Random random = new Random();
 
@@ -42,10 +47,13 @@ public class RandomPicker extends AppCompatActivity {
         setContentView(R.layout.activity_random_picker);
         setTitle("알려줘요! 해소 방법");
 
+
         slot = findViewById(R.id.slot);
         randomtv = findViewById(R.id.randomtv);
         reset = findViewById(R.id.reset);
+        ggangbtn = findViewById(R.id.ggangbtn);
 
+        ggangbtn.setVisibility(View.INVISIBLE);
         reset.setVisibility(View.INVISIBLE);
 
         SoundManager.getInstance();
@@ -62,10 +70,26 @@ public class RandomPicker extends AppCompatActivity {
                 randomtv.startAnimation(animation);
                 animation.setAnimationListener(new Animation.AnimationListener(){
                     public void onAnimationEnd(Animation animation){
-                        int ran = random.nextInt(moc.length);
-                        System.out.println(moc[ran]);
-                        randomtv.setText(moc[ran]);
-                        System.out.println("ran : " + ran );
+                       // int ran = random.nextInt(moc.length);
+                       // System.out.println(moc[ran]);
+                       // randomtv.setText(moc[ran]);
+                       // System.out.println("ran : " + ran );
+
+                        randomtv.setText(aaaa);
+
+                        if(aaaa.equals("둠칫둠칫 1깡하기")) {
+                            ggangbtn.setVisibility(View.VISIBLE);
+
+                            ggangbtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getApplicationContext(), GGang.class);
+                                    startActivity(intent);
+                                }
+                            });
+
+                        }
+
                         reset.setVisibility(View.VISIBLE);
 
                         reset.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +99,7 @@ public class RandomPicker extends AppCompatActivity {
                                 randomtv.setText("'?'");
                                 slot.setEnabled(true);
                                 reset.setVisibility(View.INVISIBLE);
+                                ggangbtn.setVisibility(View.INVISIBLE);
                             }
                         });
                     }
@@ -83,8 +108,6 @@ public class RandomPicker extends AppCompatActivity {
                 });
 
                 slot.setEnabled(false);
-
-
             }
         });
     }
@@ -96,9 +119,6 @@ public class RandomPicker extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-        finish();
-        super.onBackPressed();
+
     }
 }

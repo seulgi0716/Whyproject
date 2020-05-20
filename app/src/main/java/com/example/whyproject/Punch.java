@@ -173,8 +173,6 @@ public class Punch extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-        finish();
+
     }
 }
