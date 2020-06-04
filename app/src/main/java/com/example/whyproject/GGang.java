@@ -48,4 +48,10 @@ public class GGang extends AppCompatActivity {
             return super.shouldOverrideUrlLoading(view, url);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
+
 }

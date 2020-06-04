@@ -75,7 +75,7 @@ public class Punch extends AppCompatActivity {
                 } else {
                     targetn = target_name.getText().toString();
                     myTimer.start();
-                    mVibe.vibrate(150);
+
                 }
             }
         });
@@ -123,6 +123,7 @@ public class Punch extends AppCompatActivity {
                 public void onClick(View view) {
                     touchcount++;
                     System.out.println(touchcount);
+                    mVibe.vibrate(150);
                     countview2.setText(String.valueOf(touchcount));
                 }
             });
