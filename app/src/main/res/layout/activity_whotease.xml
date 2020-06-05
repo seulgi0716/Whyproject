@@ -34,7 +34,7 @@
             android:id="@+id/add_btn"
             android:layout_width="100dp"
             android:layout_height="55dp"
-            android:layout_marginLeft="120dp"
+            android:layout_marginLeft="100dp"
             android:background="@drawable/circle3"
             android:fontFamily="@font/seoulnamsanb"
             android:textSize="23dp"
@@ -46,7 +46,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:background="@drawable/chart"
-            android:layout_marginLeft="90dp"></ImageButton>
+            android:layout_marginLeft="50dp"></ImageButton>
     </LinearLayout>
 
     <LinearLayout

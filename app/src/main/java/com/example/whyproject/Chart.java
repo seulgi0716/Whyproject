@@ -99,22 +99,22 @@ public class Chart extends AppCompatActivity {
         }
 
 
-        Description description = new Description();
-        description.setText("스트레스 요인"); //라벨
-        description.setTextSize(15);
-        pieChart.setDescription(description);
+//        Description description = new Description();
+//        description.setText("스트레스 요인"); //라벨
+//        description.setTextSize(15);
+//        pieChart.setDescription(description);
 
-        pieChart.animateXY(1000, 1000); //애니메이션
+//        pieChart.animateXY(1000, 1000); //애니메이션
+//
+//        PieDataSet dataSet = new PieDataSet(yValues, "stress");
+//        dataSet.setValueTextColor(Color.BLACK);
+//        dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+//
+//        PieData data = new PieData((dataSet));
+//        data.setValueTextSize(20f);
+//        data.setValueTextColor(Color.BLACK);
 
-        PieDataSet dataSet = new PieDataSet(yValues, "stress");
-        dataSet.setValueTextColor(Color.BLACK);
-        dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
-
-        PieData data = new PieData((dataSet));
-        data.setValueTextSize(20f);
-        data.setValueTextColor(Color.BLACK);
-
-        pieChart.setData(data);
+//        pieChart.setData(data);
 
     }
 

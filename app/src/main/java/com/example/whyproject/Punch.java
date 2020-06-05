@@ -174,6 +174,5 @@ public class Punch extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
     }
 }

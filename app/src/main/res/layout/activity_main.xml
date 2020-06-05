@@ -23,7 +23,7 @@
             android:textColor="#000000"
             android:fontFamily="@font/goyang"
             android:layout_marginRight="10dp"
-            android:textSize="32dp"/>
+            android:textSize="30dp"/>
 
         <ImageView
             android:id="@+id/today_emo"

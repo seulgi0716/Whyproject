@@ -13,6 +13,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/crown"
+        android:layout_marginBottom="20dp"
         ></ImageView>
 
     <TextView
@@ -38,7 +39,7 @@
             android:textColor="#000000"
             android:textSize="30dp"
             android:fontFamily="@font/goyang"
-            android:layout_marginRight="150dp"></TextView>
+            android:layout_marginRight="120dp"></TextView>
 
         <TextView
             android:layout_width="match_parent"

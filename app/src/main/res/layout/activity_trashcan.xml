@@ -17,12 +17,11 @@
 
         <EditText
             android:id="@+id/writetrash"
-            android:layout_width="300dp"
-            android:layout_height="70dp"
+            android:layout_width="250dp"
+            android:layout_height="120dp"
             android:hint="버리고 싶은 말을 적어주세요!"
             android:fontFamily="@font/goyang"
             android:textColor="#000000"
-
             android:textSize="27dp"></EditText>
 
         <ImageButton
@@ -45,10 +44,11 @@
         <TextView
             android:id="@+id/papertv"
             android:layout_width="380dp"
-            android:layout_height="200dp"
+            android:layout_height="180dp"
             android:fontFamily="@font/goyang"
             android:gravity="center"
             android:textColor="#000000"
+            android:scrollbars="vertical"
             android:padding="20dp"
             android:textSize="30dp"
             android:background="@drawable/paper"></TextView>

@@ -15,11 +15,12 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity android:name=".GGang"
-            android:hardwareAccelerated="true"></activity>
+            android:hardwareAccelerated="true"
+            android:parentActivityName=".RandomPicker"></activity>
         <activity
             android:name=".GameRanking"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".CreatePassword" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".CreatePassword"/>
         <activity android:name=".PasswordActivity" />
         <activity android:name=".Chart" android:parentActivityName=".WhoteaseActivity"/>
         <activity android:name=".Punch" android:parentActivityName=".MainActivity"/>

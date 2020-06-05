@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/seoulnamsanb"
                 android:layout_marginTop="10dp"
-                android:text="을/를 해보는 건 어떨까요??"
+                android:text="을/를 해보세요!!"
                 android:textColor="#000000"
                 android:textSize="30dp"></TextView>
 

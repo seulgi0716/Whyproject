@@ -120,6 +120,10 @@ public class WhoteaseActivity extends AppCompatActivity {
                 layout.setOrientation(LinearLayout.VERTICAL);
                 layout.setGravity(Gravity.CENTER);
 
+                LinearLayout layout2 = new LinearLayout(WhoteaseActivity.this);
+                layout2.setOrientation(LinearLayout.VERTICAL);
+                layout2.setGravity(Gravity.CENTER);
+
                 LinearLayout lay1 = new LinearLayout(WhoteaseActivity.this);
                 lay1.setOrientation(LinearLayout.VERTICAL);
                 lay1.setGravity(Gravity.CENTER);
@@ -132,8 +136,8 @@ public class WhoteaseActivity extends AppCompatActivity {
                 lay3.setGravity(Gravity.CENTER);
 
                 LinearLayout lay4 = new LinearLayout(WhoteaseActivity.this);
-                layout.setOrientation(LinearLayout.VERTICAL);
-                layout.setGravity(Gravity.CENTER);
+                lay4.setOrientation(LinearLayout.VERTICAL);
+                lay4.setGravity(Gravity.CENTER);
 
                 final TextView date = new TextView(WhoteaseActivity.this);
 

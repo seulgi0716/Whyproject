@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Trashcan.class);
                 startActivity(intent);
-
             }
         });
 
@@ -111,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RandomPicker.class);
                 startActivity(intent);
-
             }
         });
 
@@ -120,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Punch.class);
                 startActivity(intent);
-
             }
         });
     }
