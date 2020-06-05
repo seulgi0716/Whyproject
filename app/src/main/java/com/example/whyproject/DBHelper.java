@@ -6,11 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
-        super(context, "TESTd.db", null, 2);
+        super(context, "TEST2d.db", null, 2);
     }
 
     private static final String CreateTB1 = "CREATE TABLE IF NOT EXISTS PWDTB (_id INTEGER PRIMARY KEY AUTOINCREMENT, SET_VALUE INTEGER DEFAULT 0, PASSWORD TEXT);";
-    private static final String CreateTB2 = "CREATE TABLE IF NOT EXISTS STRESSTB (_id INTEGER PRIMARY KEY AUTOINCREMENT, S_DATE TEXT, S_CONTENT TEXT, S_VALUE INTEGER);";
+    private static final String CreateTB2 = "CREATE TABLE IF NOT EXISTS STRESSTB (_id INTEGER PRIMARY KEY AUTOINCREMENT, S_DATE TEXT, S_KINDS TEXT, S_CONTENT TEXT, S_VALUE INTEGER);";
     private static final String CreateTB3 = "CREATE TABLE IF NOT EXISTS RANKTB (_id INTEGER PRIMARY KEY AUTOINCREMENT, TARGET_NAME TEXT, COUNT INT);";
 
 

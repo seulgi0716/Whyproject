@@ -47,7 +47,7 @@ public class Chart extends AppCompatActivity {
         ArrayList<String> chart_content = new ArrayList<String>();
         ArrayList<Integer> chart_value = new ArrayList<Integer>();
 
-        String chart_query = String.format("SELECT _id, S_CONTENT, COUNT(S_CONTENT) as COUNT FROM STRESSTB GROUP BY S_CONTENT;");
+        String chart_query = String.format("SELECT _id, S_KINDS, COUNT(S_KINDS) as COUNT FROM STRESSTB GROUP BY S_KINDS;");
         cursor = db.rawQuery(chart_query, null);
         myAdapter.changeCursor(cursor);
         //cursor.moveToFirst();
@@ -58,9 +58,9 @@ public class Chart extends AppCompatActivity {
             cursor.moveToFirst();
 
             do {
-                String cc = cursor.getString(cursor.getColumnIndex("S_CONTENT"));
-                System.out.println("abcd : " + cc);
-                chart_content.add(cc);
+                String kk = cursor.getString(cursor.getColumnIndex("S_KINDS"));
+                System.out.println("abcd : " + kk);
+                chart_content.add(kk);
                 int cv = cursor.getInt(cursor.getColumnIndex("COUNT"));
                 chart_value.add(cv);
             } while (cursor.moveToNext());
@@ -71,7 +71,7 @@ public class Chart extends AppCompatActivity {
 
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
-        pieChart.setExtraOffsets(5, 10, 5, 5);
+        pieChart.setExtraOffsets(5, 10, 5, 20);
 
         pieChart.setDragDecelerationFrictionCoef(0.95f);
 
@@ -81,7 +81,6 @@ public class Chart extends AppCompatActivity {
         pieChart.setEntryLabelColor(Color.BLACK);
 
         ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
-
 
         if (chart_value.size() >= 10 && chart_content.size() >= 10) {
             int c = cursor.getCount();
@@ -98,23 +97,15 @@ public class Chart extends AppCompatActivity {
             }
         }
 
+        PieDataSet dataSet = new PieDataSet(yValues, "stress");
+        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
 
-//        Description description = new Description();
-//        description.setText("스트레스 요인"); //라벨
-//        description.setTextSize(15);
-//        pieChart.setDescription(description);
+        PieData data = new PieData((dataSet));
+        data.setValueTextSize(20f);
+        data.setValueTextColor(Color.BLACK);
 
-//        pieChart.animateXY(1000, 1000); //애니메이션
-//
-//        PieDataSet dataSet = new PieDataSet(yValues, "stress");
-//        dataSet.setValueTextColor(Color.BLACK);
-//        dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
-//
-//        PieData data = new PieData((dataSet));
-//        data.setValueTextSize(20f);
-//        data.setValueTextColor(Color.BLACK);
-
-//        pieChart.setData(data);
+        pieChart.setData(data);
 
     }
 

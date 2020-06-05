@@ -3,12 +3,14 @@ package com.example.whyproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +20,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +29,14 @@ import android.widget.Toast;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+
+
+import org.snu.ids.kkma.index.Keyword;
+import org.snu.ids.kkma.index.KeywordExtractor;
+import org.snu.ids.kkma.index.KeywordList;
+
+
+import java.util.ArrayList;
 
 public class WhoteaseActivity extends AppCompatActivity {
 
@@ -48,7 +60,7 @@ public class WhoteaseActivity extends AppCompatActivity {
 
     final static String querySelectAll = String.format("SELECT * FROM STRESSTB");
     static String check_date;
-
+    static String s_kinds = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +79,7 @@ public class WhoteaseActivity extends AppCompatActivity {
 
         cursor = db.rawQuery(querySelectAll, null);
         myAdapter = new MyCursorAdapter(this, cursor);
-
+        countwordDB();
         calendar.addDecorators(
                 new SundayDecorator(),
                 new SaturdayDecorator(),
@@ -102,7 +114,7 @@ public class WhoteaseActivity extends AppCompatActivity {
                 if(count != 0) {
                     stress_list.setVisibility(View.VISIBLE);
                 } else if(count == 0) {
-                    Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
                     stress_list.setVisibility(View.INVISIBLE);
                 }
             }
@@ -113,7 +125,7 @@ public class WhoteaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(getApplicationContext(), year + "-" + month + "-" + day, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), year + "-" + month + "-" + day, Toast.LENGTH_SHORT).show();
                 check_d = year + "-" + month + "-" + day;
 
                 LinearLayout layout = new LinearLayout(WhoteaseActivity.this);
@@ -150,7 +162,53 @@ public class WhoteaseActivity extends AppCompatActivity {
                 }
                 date.setTextSize(20);
                 LinearLayout.LayoutParams parammargin5 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
-                parammargin5.setMargins(180, 40, 0, 10);
+                parammargin5.setMargins(0, 40, 0, 10);
+
+                final RadioGroup kinds = new RadioGroup(WhoteaseActivity.this);
+                final RadioButton hw = new RadioButton(WhoteaseActivity.this);
+                final RadioButton people = new RadioButton(WhoteaseActivity.this);
+                final RadioButton money = new RadioButton(WhoteaseActivity.this);
+                final RadioButton health = new RadioButton(WhoteaseActivity.this);
+                kinds.setOrientation(RadioGroup.HORIZONTAL);
+                hw.setText("일");
+                hw.setId(ViewCompat.generateViewId());
+                final int hwId = hw.getId();
+                System.out.println(hwId);
+                people.setText("대인관계");
+                people.setId(ViewCompat.generateViewId());
+                final int peopleId = people.getId();
+                System.out.println(peopleId);
+                money.setText("재정상태");
+                money.setId(ViewCompat.generateViewId());
+                final int moneyId = money.getId();
+                System.out.println(moneyId);
+                health.setText("수면부족");
+                health.setId(ViewCompat.generateViewId());
+                final int healthId = health.getId();
+                System.out.println(healthId);
+
+                kinds.addView(hw);
+                kinds.addView(people);
+                kinds.addView(money);
+                kinds.addView(health);
+
+                kinds.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                        if (i==hwId) {
+                            s_kinds = hw.getText().toString();
+                        } else if (i==peopleId) {
+                            s_kinds = people.getText().toString();
+                        } else if (i==moneyId) {
+                            s_kinds = money.getText().toString();
+                        } else if (i==healthId) {
+                            s_kinds = health.getText().toString();
+                        }
+                    }
+                });
+
+                LinearLayout.LayoutParams parammargin = new LinearLayout.LayoutParams(720, LinearLayout.LayoutParams.MATCH_PARENT);
+                parammargin.setMargins(0, 20, 0, 0);
 
                 final AutoCompleteTextView add_stress = new AutoCompleteTextView(WhoteaseActivity.this);
                 add_stress.setHint("스트레스 항목");
@@ -172,7 +230,6 @@ public class WhoteaseActivity extends AppCompatActivity {
 
                 ArrayAdapter<String> contentadapter = new ArrayAdapter<String>(WhoteaseActivity.this, android.R.layout.simple_dropdown_item_1line, arrcontent);
                 add_stress.setAdapter(contentadapter);
-
 
                 final TextView st = new TextView(WhoteaseActivity.this);
                 st.setText("어느정도야?");
@@ -215,12 +272,14 @@ public class WhoteaseActivity extends AppCompatActivity {
                 });
 
                 lay1.addView(add_stress, parammargin1);
+                layout2.addView(kinds, parammargin);
                 lay2.addView(st, parammargin2);
                 lay2.addView(show_sv, parammargin3);
                 lay3.addView(stress_value, parammargin4);
                 lay4.addView(date, parammargin5);
 
                 layout.addView(lay4);
+                layout.addView(layout2);
                 layout.addView(lay1);
                 layout.addView(lay2);
                 layout.addView(lay3);
@@ -232,13 +291,13 @@ public class WhoteaseActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                         try {
-
+                            System.out.println("s_kinds" +  s_kinds);
                             String s_date = date.getText().toString();
                             String stress_con = add_stress.getText().toString();
                             String a = show_sv.getText().toString();
                             int db_stress = Integer.parseInt(a);
 
-                            String ins_q1 = String.format("INSERT INTO STRESSTB VALUES (null, '%s', '%s', '%d');", s_date, stress_con, db_stress);
+                            String ins_q1 = String.format("INSERT INTO STRESSTB VALUES (null, '%s', '%s', '%s', '%d');", s_date, s_kinds, stress_con, db_stress);
                             db.execSQL(ins_q1);
                             System.out.println("날짜 : " + s_date + ", 스트레스 내용 : " + stress_con + ", 스트레스 수치 : " + db_stress);
                             selectDB();
@@ -264,6 +323,7 @@ public class WhoteaseActivity extends AppCompatActivity {
                 cursor.moveToFirst();
                 cursor.moveToPosition(i);
                 final String ss = cursor.getString(cursor.getColumnIndex("S_DATE"));
+                final String kk = cursor.getString(cursor.getColumnIndex("S_KINDS"));
                 final String cc = cursor.getString(cursor.getColumnIndex("S_CONTENT"));
                 final int vv = cursor.getInt(cursor.getColumnIndex("S_VALUE"));
 
@@ -280,11 +340,11 @@ public class WhoteaseActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         try {
                             System.out.println("ss : " + ss);
-                            String query = String.format("DELETE FROM STRESSTB WHERE S_DATE = '%s' and S_CONTENT = '%s' and S_VALUE = '%d';", ss, cc, vv);
+                            String query = String.format("DELETE FROM STRESSTB WHERE S_DATE = '%s' and S_KINDS = '%s' and S_CONTENT = '%s' and S_VALUE = '%d';", ss, kk, cc, vv);
                             db.execSQL(query);
                             selectDB();
                         } catch (Exception e) {
-                            Toast.makeText(getApplicationContext(), "aaaa", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "오류가 발생했습니다!", Toast.LENGTH_SHORT).show();
                         }
                         int count = cursor.getCount();
                         System.out.println("delete : " + count);
@@ -327,7 +387,6 @@ public class WhoteaseActivity extends AppCompatActivity {
         try {
             cursor.moveToFirst();
             String bb = cursor.getString(cursor.getColumnIndex("S_DATE"));
-            System.out.println(bb.getClass().getName());
             System.out.println("t/f : " + check_date.equals(bb));
 
             int count = cursor.getCount();
@@ -338,6 +397,56 @@ public class WhoteaseActivity extends AppCompatActivity {
                 stress_list.setAdapter(myadapter);
             }
         } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void countwordDB(){
+        String qq = String.format("SELECT S_CONTENT FROM STRESSTB;");
+        cursor = db.rawQuery(qq, null);
+        ArrayList<String> scontent = new ArrayList<>();
+       // ArrayList<String> bag = new ArrayList<>();
+   //     String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s,!%$&.]";
+        //String[] stopword = new String[]{"이", "ㅇ"};
+        //String stopword = "[이, 그리고, 와, 가]"
+
+
+        try {
+            cursor.moveToFirst();
+
+            int count = cursor.getCount();
+            System.out.println("count : " + count);
+
+            if (cursor.getCount() > 0) {
+                startManagingCursor(cursor);
+                while (count > 0) {
+                    String a = cursor.getString(cursor.getColumnIndex("S_CONTENT"));
+                    // System.out.println("a" + a);
+                    scontent.add(a);
+                    count--;
+                    cursor.moveToNext();
+                }
+            }
+
+            for (int i = 0; i < scontent.size(); i++) {
+                String aaaa = scontent.get(i);
+                //System.out.println(scontent.get(i));
+                KeywordExtractor ke = new KeywordExtractor();
+                KeywordList kl = ke.extractKeyword(aaaa, true);
+
+                for (int j = 0; j < kl.size(); j++) {
+                    Keyword kwrd = kl.get(j);
+                    System.out.println(kwrd.getString() + "\t" + kwrd.getCnt());
+                    //          bag[j] = bag[j].replaceAll(match, "");
+                    //        System.out.println(bag[j]);
+                    // }
+
+
+                    // }
+                }
+            }
+        }
+            catch (Exception e) {
             Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
         }
     }

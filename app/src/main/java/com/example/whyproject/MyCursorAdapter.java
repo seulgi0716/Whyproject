@@ -19,7 +19,7 @@ public class MyCursorAdapter extends CursorAdapter {
         final TextView s_date = (TextView) view.findViewById(R.id.list_date);
         final TextView s_content = (TextView) view.findViewById(R.id.list_content);
         final TextView s_value = (TextView) view.findViewById(R.id.list_value);
-        String sd = cursor.getString(cursor.getColumnIndex("S_DATE"));
+        String sd = cursor.getString(cursor.getColumnIndex("S_KINDS"));
         String sc = cursor.getString(cursor.getColumnIndex("S_CONTENT"));
         int sv = cursor.getInt(cursor.getColumnIndex("S_VALUE"));
         String convertsv = Integer.toString(sv);
