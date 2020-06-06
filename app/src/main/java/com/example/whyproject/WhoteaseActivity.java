@@ -79,7 +79,7 @@ public class WhoteaseActivity extends AppCompatActivity {
 
         cursor = db.rawQuery(querySelectAll, null);
         myAdapter = new MyCursorAdapter(this, cursor);
-        countwordDB();
+        //countwordDB();
         calendar.addDecorators(
                 new SundayDecorator(),
                 new SaturdayDecorator(),
@@ -169,28 +169,30 @@ public class WhoteaseActivity extends AppCompatActivity {
                 final RadioButton people = new RadioButton(WhoteaseActivity.this);
                 final RadioButton money = new RadioButton(WhoteaseActivity.this);
                 final RadioButton health = new RadioButton(WhoteaseActivity.this);
+                final RadioButton etc = new RadioButton(WhoteaseActivity.this);
                 kinds.setOrientation(RadioGroup.HORIZONTAL);
                 hw.setText("일");
                 hw.setId(ViewCompat.generateViewId());
                 final int hwId = hw.getId();
-                System.out.println(hwId);
                 people.setText("대인관계");
                 people.setId(ViewCompat.generateViewId());
                 final int peopleId = people.getId();
-                System.out.println(peopleId);
                 money.setText("재정상태");
                 money.setId(ViewCompat.generateViewId());
                 final int moneyId = money.getId();
-                System.out.println(moneyId);
-                health.setText("수면부족");
+                health.setText("건강");
                 health.setId(ViewCompat.generateViewId());
                 final int healthId = health.getId();
-                System.out.println(healthId);
+                etc.setText("기타");
+                etc.setId(ViewCompat.generateViewId());
+                final int etcId = etc.getId();
+
 
                 kinds.addView(hw);
                 kinds.addView(people);
                 kinds.addView(money);
                 kinds.addView(health);
+                kinds.addView(etc);
 
                 kinds.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
@@ -203,11 +205,13 @@ public class WhoteaseActivity extends AppCompatActivity {
                             s_kinds = money.getText().toString();
                         } else if (i==healthId) {
                             s_kinds = health.getText().toString();
+                        } else if (i==etcId) {
+                            s_kinds = etc.getText().toString();
                         }
                     }
                 });
 
-                LinearLayout.LayoutParams parammargin = new LinearLayout.LayoutParams(720, LinearLayout.LayoutParams.MATCH_PARENT);
+                LinearLayout.LayoutParams parammargin = new LinearLayout.LayoutParams(780, LinearLayout.LayoutParams.MATCH_PARENT);
                 parammargin.setMargins(0, 20, 0, 0);
 
                 final AutoCompleteTextView add_stress = new AutoCompleteTextView(WhoteaseActivity.this);
@@ -334,7 +338,7 @@ public class WhoteaseActivity extends AppCompatActivity {
                 AlertDialog.Builder build = new AlertDialog.Builder(WhoteaseActivity.this);
 
                 build.setTitle("항목 삭제").setMessage("해당 항목을 삭제하시겠습니까?");
-                build.setIcon(R.drawable.soso);
+                build.setIcon(R.drawable.trashcan);
                 build.setPositiveButton("삭제", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -369,6 +373,7 @@ public class WhoteaseActivity extends AppCompatActivity {
             }
         });
 
+   //     countwordDB();
 
         chart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -401,55 +406,60 @@ public class WhoteaseActivity extends AppCompatActivity {
         }
     }
 
-    private void countwordDB(){
-        String qq = String.format("SELECT S_CONTENT FROM STRESSTB;");
-        cursor = db.rawQuery(qq, null);
-        ArrayList<String> scontent = new ArrayList<>();
-       // ArrayList<String> bag = new ArrayList<>();
-   //     String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s,!%$&.]";
-        //String[] stopword = new String[]{"이", "ㅇ"};
-        //String stopword = "[이, 그리고, 와, 가]"
+//    private void countwordDB(){
+//        String qq = String.format("SELECT S_CONTENT FROM STRESSTB;");
+//        cursor = db.rawQuery(qq, null);
+//        ArrayList<String> scontent = new ArrayList<>();
+//        // ArrayList<String> bag = new ArrayList<>();
+//        //     String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s,!%$&.]";
+//        //String[] stopword = new String[]{"이", "ㅇ"};
+//        //String stopword = "[이, 그리고, 와, 가]"
+//        ArrayList<String> s_con = new ArrayList<>();
+//        ArrayList<Integer> s_count = new ArrayList<>();
+//
+//        try {
+//            cursor.moveToFirst();
+//
+//            int count = cursor.getCount();
+//            System.out.println("count : " + count);
+//
+//            if (cursor.getCount() > 0) {
+//                startManagingCursor(cursor);
+//                while (count > 0) {
+//                    String a = cursor.getString(cursor.getColumnIndex("S_CONTENT"));
+//                    // System.out.println("a" + a);
+//                    scontent.add(a);
+//                    count--;
+//                    cursor.moveToNext();
+//                }
+//            }
+//
+//            for (int i = 0; i < scontent.size(); i++) {
+//                String aaaa = scontent.get(i);
+//                //System.out.println(scontent.get(i));
+//                KeywordExtractor ke = new KeywordExtractor();
+//                KeywordList kl = ke.extractKeyword(aaaa, true);
+//
+//                for (int j = 0; j < kl.size(); j++) {
+//                    Keyword kwrd = kl.get(j);
+//                    s_con.add(kwrd.getString());
+//                    s_count.add(kwrd.getCnt());
+//                    System.out.println(kwrd.getString() + "\t" + kwrd.getCnt());
+//                }
+//            }
+//
+//            String ins_q1 = String.format("INSERT INTO WORDTB VALUES (null, '%s', '%d');", s_date, s_kinds, stress_con, db_stress);
+//            db.execSQL(ins_q1);
+//            System.out.println("날짜 : " + s_date + ", 스트레스 내용 : " + stress_con + ", 스트레스 수치 : " + db_stress);
+//            selectDB();
+//
+//        }
+//        catch (Exception e) {
+//            Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
 
-        try {
-            cursor.moveToFirst();
-
-            int count = cursor.getCount();
-            System.out.println("count : " + count);
-
-            if (cursor.getCount() > 0) {
-                startManagingCursor(cursor);
-                while (count > 0) {
-                    String a = cursor.getString(cursor.getColumnIndex("S_CONTENT"));
-                    // System.out.println("a" + a);
-                    scontent.add(a);
-                    count--;
-                    cursor.moveToNext();
-                }
-            }
-
-            for (int i = 0; i < scontent.size(); i++) {
-                String aaaa = scontent.get(i);
-                //System.out.println(scontent.get(i));
-                KeywordExtractor ke = new KeywordExtractor();
-                KeywordList kl = ke.extractKeyword(aaaa, true);
-
-                for (int j = 0; j < kl.size(); j++) {
-                    Keyword kwrd = kl.get(j);
-                    System.out.println(kwrd.getString() + "\t" + kwrd.getCnt());
-                    //          bag[j] = bag[j].replaceAll(match, "");
-                    //        System.out.println(bag[j]);
-                    // }
-
-
-                    // }
-                }
-            }
-        }
-            catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     @Override
     public void onBackPressed() {

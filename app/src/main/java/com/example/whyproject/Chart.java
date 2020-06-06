@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 public class Chart extends AppCompatActivity {
 
     private PieChart pieChart;
+    private Button nextbtn;
 
     static DBHelper mHelper;
     static SQLiteDatabase db;
@@ -43,6 +46,7 @@ public class Chart extends AppCompatActivity {
         myAdapter = new MyCursorAdapter(this, cursor);
 
         pieChart = findViewById(R.id.piechart);
+        nextbtn = findViewById(R.id.nextbtn);
 
         ArrayList<String> chart_content = new ArrayList<String>();
         ArrayList<Integer> chart_value = new ArrayList<Integer>();
@@ -106,6 +110,14 @@ public class Chart extends AppCompatActivity {
         data.setValueTextColor(Color.BLACK);
 
         pieChart.setData(data);
+
+        nextbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Chart_bar.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

@@ -23,8 +23,8 @@ public class MyCursorAdapter extends CursorAdapter {
         String sc = cursor.getString(cursor.getColumnIndex("S_CONTENT"));
         int sv = cursor.getInt(cursor.getColumnIndex("S_VALUE"));
         String convertsv = Integer.toString(sv);
-        Log.d("디비의 날짜 값", sd);
-        Log.d("스트링 확인", sc + ", " + convertsv);
+       // Log.d("디비의 날짜 값", sd);
+       // Log.d("스트링 확인", sc + ", " + convertsv);
        // System.out.println("convertbm : " + convertbm);
         s_date.setText(sd);
         s_content.setText(sc);

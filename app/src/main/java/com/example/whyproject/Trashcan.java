@@ -2,13 +2,6 @@ package com.example.whyproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.content.Intent;
-import android.media.AudioManager;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -23,8 +16,8 @@ public class Trashcan extends AppCompatActivity {
 
     private EditText writetrash;
     private TextView papertv;
-    private ImageButton throwbtn;
-    private ImageView trashcan;
+    private ImageButton throwbtn, trashcan;
+  //  private ImageView trashcan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +32,13 @@ public class Trashcan extends AppCompatActivity {
         papertv.setVisibility(View.INVISIBLE);
 
         writetrash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trashcan.setImageResource(R.drawable.emptycan);
+            }
+        });
+
+        trashcan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 trashcan.setImageResource(R.drawable.emptycan);
