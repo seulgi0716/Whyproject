@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="stress_kind">
+        <item>직장</item>
+        <item>학교</item>
+        <item>생활/환경</item>
+        <item>대인관계</item>
+    </string-array>
+</resources>

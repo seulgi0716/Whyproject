@@ -24,7 +24,6 @@ import java.util.ArrayList;
 public class Chart extends AppCompatActivity {
 
     private PieChart pieChart;
-    private Button nextbtn;
 
     static DBHelper mHelper;
     static SQLiteDatabase db;
@@ -46,7 +45,6 @@ public class Chart extends AppCompatActivity {
         myAdapter = new MyCursorAdapter(this, cursor);
 
         pieChart = findViewById(R.id.piechart);
-        nextbtn = findViewById(R.id.nextbtn);
 
         ArrayList<String> chart_content = new ArrayList<String>();
         ArrayList<Integer> chart_value = new ArrayList<Integer>();
@@ -111,13 +109,6 @@ public class Chart extends AppCompatActivity {
 
         pieChart.setData(data);
 
-        nextbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Chart_bar.class);
-                startActivity(intent);
-            }
-        });
 
     }
 

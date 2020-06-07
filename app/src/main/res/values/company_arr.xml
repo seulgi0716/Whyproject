@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="company">
+    <item>상사</item>
+    <item>야근</item>
+    <item>업무</item>
+    <item>동료</item>
+    <item>부하직원</item>
+    <item>기타</item>
+</string-array>
+</resources>

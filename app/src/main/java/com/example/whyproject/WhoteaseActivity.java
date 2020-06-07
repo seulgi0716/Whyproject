@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -17,12 +18,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +58,7 @@ public class WhoteaseActivity extends AppCompatActivity {
     static CalendarDay selectedDay = null;
     static boolean Selected;
     String DATE;
-    String check_d;
+    String check_d, check_d2;
     int year, month, day, s_value;
 
     final static String querySelectAll = String.format("SELECT * FROM STRESSTB");
@@ -126,15 +129,20 @@ public class WhoteaseActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Toast.makeText(getApplicationContext(), year + "-" + month + "-" + day, Toast.LENGTH_SHORT).show();
-                check_d = year + "-" + month + "-" + day;
+                check_d = year + "년 " + month + "월 " + day + "일";
+                check_d2 = year + "-" + month + "-" + day;
+
 
                 LinearLayout layout = new LinearLayout(WhoteaseActivity.this);
                 layout.setOrientation(LinearLayout.VERTICAL);
                 layout.setGravity(Gravity.CENTER);
 
                 LinearLayout layout2 = new LinearLayout(WhoteaseActivity.this);
-                layout2.setOrientation(LinearLayout.VERTICAL);
+                layout2.setOrientation(LinearLayout.HORIZONTAL);
                 layout2.setGravity(Gravity.CENTER);
+
+                LinearLayout layout3 = new LinearLayout(WhoteaseActivity.this);
+                layout2.setOrientation(LinearLayout.VERTICAL);
 
                 LinearLayout lay1 = new LinearLayout(WhoteaseActivity.this);
                 lay1.setOrientation(LinearLayout.VERTICAL);
@@ -164,60 +172,76 @@ public class WhoteaseActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams parammargin5 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 parammargin5.setMargins(0, 40, 0, 10);
 
-                final RadioGroup kinds = new RadioGroup(WhoteaseActivity.this);
-                final RadioButton hw = new RadioButton(WhoteaseActivity.this);
-                final RadioButton people = new RadioButton(WhoteaseActivity.this);
-                final RadioButton money = new RadioButton(WhoteaseActivity.this);
-                final RadioButton health = new RadioButton(WhoteaseActivity.this);
-                final RadioButton etc = new RadioButton(WhoteaseActivity.this);
-                kinds.setOrientation(RadioGroup.HORIZONTAL);
-                hw.setText("일");
-                hw.setId(ViewCompat.generateViewId());
-                final int hwId = hw.getId();
-                people.setText("대인관계");
-                people.setId(ViewCompat.generateViewId());
-                final int peopleId = people.getId();
-                money.setText("재정상태");
-                money.setId(ViewCompat.generateViewId());
-                final int moneyId = money.getId();
-                health.setText("건강");
-                health.setId(ViewCompat.generateViewId());
-                final int healthId = health.getId();
-                etc.setText("기타");
-                etc.setId(ViewCompat.generateViewId());
-                final int etcId = etc.getId();
+                LinearLayout.LayoutParams parammargin6 = new LinearLayout.LayoutParams(600, LinearLayout.LayoutParams.MATCH_PARENT);
+                parammargin6.setMargins(0, 40, 0, 10);
 
 
-                kinds.addView(hw);
-                kinds.addView(people);
-                kinds.addView(money);
-                kinds.addView(health);
-                kinds.addView(etc);
+                final TextView k = new TextView(WhoteaseActivity.this);
+                k.setText("스트레스 원인");
+                k.setTextSize(17);
+                k.setTextColor(Color.BLACK);
 
-                kinds.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                String kind_arr[] = getResources().getStringArray(R.array.stress_kind);
+                String company_arr[] = getResources().getStringArray(R.array.company);
+                String environment_arr[] = getResources().getStringArray(R.array.environment);
+                String relation_arr[] = getResources().getStringArray(R.array.relation);
+                String school_arr[] = getResources().getStringArray(R.array.school);
+
+                final Spinner kinds1, kinds2;
+                kinds1 = new Spinner(WhoteaseActivity.this);
+                kinds2 = new Spinner(WhoteaseActivity.this);
+
+                final ArrayAdapter<String> array, array2, array3, array4, array5;
+                array = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, kind_arr);
+                array2 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, company_arr);
+                array3 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, school_arr);
+                array4 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, environment_arr);
+                array5 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, relation_arr);
+
+
+                kinds1.setAdapter(array);
+
+                kinds1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
-                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                        if (i==hwId) {
-                            s_kinds = hw.getText().toString();
-                        } else if (i==peopleId) {
-                            s_kinds = people.getText().toString();
-                        } else if (i==moneyId) {
-                            s_kinds = money.getText().toString();
-                        } else if (i==healthId) {
-                            s_kinds = health.getText().toString();
-                        } else if (i==etcId) {
-                            s_kinds = etc.getText().toString();
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        if(adapterView.getItemIdAtPosition(i) == 0) {
+                            kinds2.setAdapter(array2);
+                        } else if(adapterView.getItemIdAtPosition(i) == 1) {
+                            kinds2.setAdapter(array3);
+                        } else if(adapterView.getItemIdAtPosition(i) == 2) {
+                            kinds2.setAdapter(array4);
+                        } else if(adapterView.getItemIdAtPosition(i) == 3) {
+                            kinds2.setAdapter(array5);
                         }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
                     }
                 });
 
-                LinearLayout.LayoutParams parammargin = new LinearLayout.LayoutParams(780, LinearLayout.LayoutParams.MATCH_PARENT);
+                kinds2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        s_kinds = adapterView.getItemAtPosition(i).toString();
+                        Log.d("스트레스 원인", s_kinds);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+
+                LinearLayout.LayoutParams parammargin = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 parammargin.setMargins(0, 20, 0, 0);
 
                 final AutoCompleteTextView add_stress = new AutoCompleteTextView(WhoteaseActivity.this);
-                add_stress.setHint("스트레스 항목");
+                add_stress.setHint("스트레스 내용");
                 add_stress.setThreshold(1);
                 add_stress.setTextSize(20);
+                add_stress.setTextColor(Color.BLACK);
                 LinearLayout.LayoutParams parammargin1 = new LinearLayout.LayoutParams(600, LinearLayout.LayoutParams.MATCH_PARENT);
                 parammargin1.setMargins(0, 20, 0, 0);
 
@@ -236,14 +260,16 @@ public class WhoteaseActivity extends AppCompatActivity {
                 add_stress.setAdapter(contentadapter);
 
                 final TextView st = new TextView(WhoteaseActivity.this);
-                st.setText("어느정도야?");
+                st.setText("어느정도?");
                 st.setTextSize(20);
+                st.setTextColor(Color.BLACK);
                 LinearLayout.LayoutParams parammargin2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 parammargin2.setMargins(180, 35, 0, 10);
 
                 final TextView show_sv = new TextView(WhoteaseActivity.this);
                 show_sv.setText("1");
                 show_sv.setTextSize(20);
+                show_sv.setTextColor(Color.BLACK);
                 LinearLayout.LayoutParams parammargin3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 parammargin3.setMargins(20, 35, 0, 10);
 
@@ -265,6 +291,9 @@ public class WhoteaseActivity extends AppCompatActivity {
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         s_value = stress_value.getProgress();
+                        if(s_value > 70) {
+                            show_sv.setTextColor(Color.RED);
+                        }
                     }
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
@@ -276,13 +305,16 @@ public class WhoteaseActivity extends AppCompatActivity {
                 });
 
                 lay1.addView(add_stress, parammargin1);
-                layout2.addView(kinds, parammargin);
+                layout2.addView(kinds1, parammargin6);
+                layout2.addView(kinds2, parammargin6);
+                layout3.addView(k, parammargin2);
                 lay2.addView(st, parammargin2);
                 lay2.addView(show_sv, parammargin3);
                 lay3.addView(stress_value, parammargin4);
                 lay4.addView(date, parammargin5);
 
                 layout.addView(lay4);
+                layout.addView(layout3);
                 layout.addView(layout2);
                 layout.addView(lay1);
                 layout.addView(lay2);
@@ -295,8 +327,12 @@ public class WhoteaseActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                         try {
-                            System.out.println("s_kinds" +  s_kinds);
-                            String s_date = date.getText().toString();
+                            System.out.println("s_kinds " +  s_kinds);
+                            System.out.println("s_date " + check_d2);
+
+                            String s_date = check_d2;
+
+                           // String s_date = date.getText().toString();
                             String stress_con = add_stress.getText().toString();
                             String a = show_sv.getText().toString();
                             int db_stress = Integer.parseInt(a);

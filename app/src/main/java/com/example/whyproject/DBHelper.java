@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
     public DBHelper(Context context) {
-        super(context, "TEST2d.db", null, 2);
+        super(context, "Why.db", null, 2);
     }
 
     private static final String CreateTB1 = "CREATE TABLE IF NOT EXISTS PWDTB (_id INTEGER PRIMARY KEY AUTOINCREMENT, SET_VALUE INTEGER DEFAULT 0, PASSWORD TEXT);";

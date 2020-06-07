@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="environment">
+        <item>날씨</item>
+        <item>주변환경</item>
+        <item>수면부족</item>
+        <item>취업</item>
+        <item>육아</item>
+        <item>집안일</item>
+        <item>기타</item>
+    </string-array>
+</resources>

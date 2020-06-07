@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="school">
+        <item>성적</item>
+        <item>과제</item>
+        <item>선배</item>
+        <item>동기</item>
+        <item>시험</item>
+        <item>기타</item>
+    </string-array>
+</resources>
