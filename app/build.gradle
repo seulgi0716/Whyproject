@@ -34,8 +34,6 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.1.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
-    implementation files('libs/kkma-2.1.jar')
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
