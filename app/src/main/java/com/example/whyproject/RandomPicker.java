@@ -26,16 +26,17 @@ public class RandomPicker extends AppCompatActivity {
     private ImageButton slot;
     private TextView randomtv;
 
-    String moc[] = {
-            "아무 생각 없이 푹 잠에 들기", "둠칫둠칫 1깡하기", "부어라~ 마셔라~ 알코올 넣기", "땀 쭉쭉 운동", "하하호호 친구들과 수다떨기",
-            "제일 좋아하는 음식 먹기", "목욕", "가볍게 산책", "즐거운 상상",
-            "좋아하는 TV 예능 보기", "영화보기", "유튜브 재밌는 영상보기",
-            "눈감고 크게 심호흡", "음악 듣기", "나는 가수다! 노래방 가기",
-            "쓱싹쓱싹 청소하기", "즐거운 쇼핑하기", "팔다리 쭉쭉 스트레칭 하기", "평소에 즐겨하는 게임",
-            "아무도 없는 곳에서 크게 욕하기", "땀 뻘뻘! 매운 음식 먹기"
-    };
+//    String moc[] = {
+//            "아무 생각 없이 푹 잠에 들기", "둠칫둠칫 1깡하기", "부어라~ 마셔라~ 알코올 넣기", "땀 쭉쭉 운동", "하하호호 친구들과 수다떨기",
+//            "제일 좋아하는 음식 먹기", "목욕", "가볍게 산책", "즐거운 상상",
+//            "좋아하는 TV 예능 보기", "영화보기", "유튜브 재밌는 영상보기",
+//            "눈감고 크게 심호흡", "음악 듣기", "나는 가수다! 노래방 가기",
+//            "쓱싹쓱싹 청소하기", "즐거운 쇼핑하기", "팔다리 쭉쭉 스트레칭 하기", "평소에 즐겨하는 게임",
+//            "아무도 없는 곳에서 크게 욕하기", "땀 뻘뻘! 매운 음식 먹기"
+//    };
 
-    String aaaa = "둠칫둠칫 1깡하기";
+    String moc[] = {"둠칫둠칫 1깡하기", "시원하게~ 역딱~두!", "잠시 가볍게 산책"};
+
 
     ArrayList<String> methodOfcancel = new ArrayList<>();
     Random random = new Random();
@@ -70,14 +71,14 @@ public class RandomPicker extends AppCompatActivity {
                 randomtv.startAnimation(animation);
                 animation.setAnimationListener(new Animation.AnimationListener(){
                     public void onAnimationEnd(Animation animation){
-                       // int ran = random.nextInt(moc.length);
-                       // System.out.println(moc[ran]);
-                       // randomtv.setText(moc[ran]);
-                       // System.out.println("ran : " + ran );
+                        int ran = random.nextInt(moc.length);
+                        System.out.println(moc[ran]);
+                        randomtv.setText(moc[ran]);
+                        System.out.println("ran : " + ran );
 
-                        randomtv.setText(aaaa);
+                //        randomtv.setText(aaaa);
 
-                        if(aaaa.equals("둠칫둠칫 1깡하기")) {
+                        if(moc[ran].equals("둠칫둠칫 1깡하기")) {
                             ggangbtn.setVisibility(View.VISIBLE);
 
                             ggangbtn.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +88,10 @@ public class RandomPicker extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             });
+                        }
 
+                        if(moc[ran].equals("시원하게~ 역딱~두!")) {
+                            randomtv.setTextSize(35);
                         }
 
                         reset.setVisibility(View.VISIBLE);

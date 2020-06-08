@@ -34,13 +34,6 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 
-import org.snu.ids.kkma.index.Keyword;
-import org.snu.ids.kkma.index.KeywordExtractor;
-import org.snu.ids.kkma.index.KeywordList;
-
-
-import java.util.ArrayList;
-
 public class WhoteaseActivity extends AppCompatActivity {
 
     MaterialCalendarView calendar;
@@ -142,7 +135,7 @@ public class WhoteaseActivity extends AppCompatActivity {
                 layout2.setGravity(Gravity.CENTER);
 
                 LinearLayout layout3 = new LinearLayout(WhoteaseActivity.this);
-                layout2.setOrientation(LinearLayout.VERTICAL);
+                layout3.setOrientation(LinearLayout.VERTICAL);
 
                 LinearLayout lay1 = new LinearLayout(WhoteaseActivity.this);
                 lay1.setOrientation(LinearLayout.VERTICAL);
@@ -172,8 +165,8 @@ public class WhoteaseActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams parammargin5 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 parammargin5.setMargins(0, 40, 0, 10);
 
-                LinearLayout.LayoutParams parammargin6 = new LinearLayout.LayoutParams(600, LinearLayout.LayoutParams.MATCH_PARENT);
-                parammargin6.setMargins(0, 40, 0, 10);
+                LinearLayout.LayoutParams parammargin6 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                parammargin6.setMargins(0, 20, 0, 10);
 
 
                 final TextView k = new TextView(WhoteaseActivity.this);
@@ -305,9 +298,9 @@ public class WhoteaseActivity extends AppCompatActivity {
                 });
 
                 lay1.addView(add_stress, parammargin1);
+                layout3.addView(k, parammargin2);
                 layout2.addView(kinds1, parammargin6);
                 layout2.addView(kinds2, parammargin6);
-                layout3.addView(k, parammargin2);
                 lay2.addView(st, parammargin2);
                 lay2.addView(show_sv, parammargin3);
                 lay3.addView(stress_value, parammargin4);
@@ -441,61 +434,6 @@ public class WhoteaseActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
         }
     }
-
-//    private void countwordDB(){
-//        String qq = String.format("SELECT S_CONTENT FROM STRESSTB;");
-//        cursor = db.rawQuery(qq, null);
-//        ArrayList<String> scontent = new ArrayList<>();
-//        // ArrayList<String> bag = new ArrayList<>();
-//        //     String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s,!%$&.]";
-//        //String[] stopword = new String[]{"이", "ㅇ"};
-//        //String stopword = "[이, 그리고, 와, 가]"
-//        ArrayList<String> s_con = new ArrayList<>();
-//        ArrayList<Integer> s_count = new ArrayList<>();
-//
-//        try {
-//            cursor.moveToFirst();
-//
-//            int count = cursor.getCount();
-//            System.out.println("count : " + count);
-//
-//            if (cursor.getCount() > 0) {
-//                startManagingCursor(cursor);
-//                while (count > 0) {
-//                    String a = cursor.getString(cursor.getColumnIndex("S_CONTENT"));
-//                    // System.out.println("a" + a);
-//                    scontent.add(a);
-//                    count--;
-//                    cursor.moveToNext();
-//                }
-//            }
-//
-//            for (int i = 0; i < scontent.size(); i++) {
-//                String aaaa = scontent.get(i);
-//                //System.out.println(scontent.get(i));
-//                KeywordExtractor ke = new KeywordExtractor();
-//                KeywordList kl = ke.extractKeyword(aaaa, true);
-//
-//                for (int j = 0; j < kl.size(); j++) {
-//                    Keyword kwrd = kl.get(j);
-//                    s_con.add(kwrd.getString());
-//                    s_count.add(kwrd.getCnt());
-//                    System.out.println(kwrd.getString() + "\t" + kwrd.getCnt());
-//                }
-//            }
-//
-//            String ins_q1 = String.format("INSERT INTO WORDTB VALUES (null, '%s', '%d');", s_date, s_kinds, stress_con, db_stress);
-//            db.execSQL(ins_q1);
-//            System.out.println("날짜 : " + s_date + ", 스트레스 내용 : " + stress_con + ", 스트레스 수치 : " + db_stress);
-//            selectDB();
-//
-//        }
-//        catch (Exception e) {
-//            Toast.makeText(getApplicationContext(), "아무 내용이 없습니다!", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
-
 
     @Override
     public void onBackPressed() {

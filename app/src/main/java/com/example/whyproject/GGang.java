@@ -24,7 +24,7 @@ public class GGang extends AppCompatActivity {
         setContentView(R.layout.activity_web_view);
 
         ActionBar actionBar = getSupportActionBar();  //제목줄 객체 얻어오기
-        actionBar.setTitle("너도 해봐 깡!");
+        actionBar.setTitle("너도 춰봐 깡!");
 
         actionBar.setDisplayHomeAsUpEnabled(true);
 
