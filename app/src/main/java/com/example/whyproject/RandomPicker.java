@@ -1,8 +1,6 @@
 package com.example.whyproject;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
@@ -13,7 +11,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -35,12 +32,10 @@ public class RandomPicker extends AppCompatActivity {
 //            "아무도 없는 곳에서 크게 욕하기", "땀 뻘뻘! 매운 음식 먹기"
 //    };
 
+    /* 깡 화면 나오기 용 */
     String moc[] = {"둠칫둠칫 1깡하기", "시원하게~ 역딱~두!", "잠시 가볍게 산책"};
 
-
-    ArrayList<String> methodOfcancel = new ArrayList<>();
     Random random = new Random();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +69,8 @@ public class RandomPicker extends AppCompatActivity {
                         int ran = random.nextInt(moc.length);
                         System.out.println(moc[ran]);
                         randomtv.setText(moc[ran]);
+                        randomtv.setTextSize(35);
                         System.out.println("ran : " + ran );
-
-                //        randomtv.setText(aaaa);
 
                         if(moc[ran].equals("둠칫둠칫 1깡하기")) {
                             ggangbtn.setVisibility(View.VISIBLE);
@@ -88,10 +82,6 @@ public class RandomPicker extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             });
-                        }
-
-                        if(moc[ran].equals("시원하게~ 역딱~두!")) {
-                            randomtv.setTextSize(35);
                         }
 
                         reset.setVisibility(View.VISIBLE);

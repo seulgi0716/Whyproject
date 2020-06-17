@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.media.AudioManager;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -23,12 +21,12 @@ import android.widget.Toast;
 
 public class Punch extends AppCompatActivity {
 
-    TextView timertv, countview2;
-    MyTimer myTimer;
-    Button start, resetbtn;
-    Vibrator mVibe;
-    ImageButton target, ranking;
-    EditText target_name;
+    private TextView timertv, countview2;
+    private MyTimer myTimer;
+    private Button start, resetbtn;
+    private Vibrator mVibe;
+    private ImageButton target, ranking;
+    private EditText target_name;
     int touchcount=0;
     Intent intent;
     String targetn;
@@ -55,9 +53,9 @@ public class Punch extends AppCompatActivity {
         target_name = findViewById(R.id.target_name);
         countview2 = findViewById(R.id.countview2);
 
-      //  target_name.addTextChangedListener(watcher2);
         countview2.addTextChangedListener(watcher);
         countview2.setVisibility(View.INVISIBLE);
+
         myTimer = new MyTimer(30000, 1000);
 
         target.setEnabled(false);
@@ -146,12 +144,12 @@ public class Punch extends AppCompatActivity {
     private TextWatcher watcher = new TextWatcher() {
         @Override
         public void afterTextChanged(Editable edit) {
-            // Text가 바뀌고 동작할 코드
+
         }
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            // Text가 바뀌기 전 동작할 코드
+
         }
 
         @Override

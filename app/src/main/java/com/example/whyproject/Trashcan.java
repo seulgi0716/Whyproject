@@ -17,7 +17,6 @@ public class Trashcan extends AppCompatActivity {
     private EditText writetrash;
     private TextView papertv;
     private ImageButton throwbtn, trashcan;
-  //  private ImageView trashcan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

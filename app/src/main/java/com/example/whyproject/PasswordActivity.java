@@ -21,8 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 public class PasswordActivity extends AppCompatActivity {
 
     private Button btn[] = new Button[11];
